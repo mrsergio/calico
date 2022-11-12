@@ -4,13 +4,14 @@
 //
 //  Created by Sergii Simakhin on 11/12/22.
 //
-//  AppCoordinator is an entry point of the app.
+//  AppCoordinator is an entry point of the app
 //
 
 import Foundation
 import UIKit
 
 final class AppCoordinator {
+    
     let window: UIWindow
     
     init(window: UIWindow) {
@@ -19,13 +20,13 @@ final class AppCoordinator {
 }
 
 extension AppCoordinator: Coordinator {
+    
     var key: Coordinators {
         .app
     }
     
     func start() {
-        //
+        let homeCoordinator = HomeCoordinator(window: window)
+        homeCoordinator.start()
     }
-    
-    
 }

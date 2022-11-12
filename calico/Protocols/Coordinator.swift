@@ -14,5 +14,5 @@ protocol Coordinator: AnyObject {
 }
 
 enum Coordinators {
-    case app, main, detail
+    case app, home, detail
 }
