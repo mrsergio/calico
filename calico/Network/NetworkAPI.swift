@@ -11,6 +11,8 @@ import Alamofire
 enum NetworkAPI {
     case fetchByTag(_ tag: String, limit: Int)
     case fetchAvailableTags
+    
+    static let url = URL(string: "https://cataas.com/")!
 }
 
 enum RequestTask {
@@ -21,7 +23,7 @@ enum RequestTask {
 extension NetworkAPI {
     
     var baseURL: URL {
-        URL(string: "https://cataas.com/api/")!
+        NetworkAPI.url.appendingPathComponent("api")
     }
     
     var path: String {

@@ -12,6 +12,11 @@ struct CatModel: Decodable {
     let id: String
     let tags: [String]
     
+    var url: URL {
+        // Example: https://cataas.com/cat/Rn6xqsiHb9B7qgLw
+        NetworkAPI.url.appendingPathComponent("cat").appendingPathComponent(id)
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id = "_id"
         case tags
