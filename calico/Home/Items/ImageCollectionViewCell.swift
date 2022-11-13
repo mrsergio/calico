@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ImageCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.image = UIImage(named: "PlaceholderImage")
         $0.clipsToBounds = true
         
         return $0
@@ -38,8 +40,11 @@ final class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     func config(with urlString: String?) {
-        print("💥 ImageCollectionViewCell config: \(String(describing: urlString))")
-        // TODO: assign `urlString` to imageView with Kingfisher
+        guard let urlString, let imageURL = URL(string: urlString) else {
+            return
+        }
+        
+        imageView.kf.setImage(with: imageURL)
     }
     
 }
