@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 import SwiftUI
+import Combine
 
 final class HomeViewController: UIViewController {
     
+    private var cancellables = Set<AnyCancellable>()
     private var viewModel: HomeViewModel
     
     typealias DataSource = UICollectionViewDiffableDataSource<HomeViewModel.CollectionSection, HomeViewModel.CollectionItem>
@@ -38,8 +40,15 @@ final class HomeViewController: UIViewController {
     }
     
     private func commonInit() {
-        dataSource.apply(viewModel.dataSnapshot)
+        updateDataSource()
         setupCollectionView()
+        
+        viewModel.dataDidUpdate
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.updateDataSource()
+            }
+            .store(in: &cancellables)
     }
     
     private func setupCollectionView() {
@@ -57,6 +66,11 @@ final class HomeViewController: UIViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    /// Reload collectionView with (supposed to be new) data from viewModel
+    func updateDataSource() {
+        dataSource.apply(viewModel.dataSnapshot)
     }
 }
 
@@ -152,7 +166,7 @@ extension HomeViewController {
             cellProvider: { (collectionView, indexPath, itemModel) -> UICollectionViewCell? in
                 let cell = collectionView.dequeueReusableCell(indexPath) as ImageCollectionViewCell
                 cell.config(with: itemModel.imageURLString)
-                cell.backgroundColor = [UIColor.yellow, UIColor.purple, UIColor.green].randomElement()
+                
                 return cell
             }
         )
