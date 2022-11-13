@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension HomeViewModel {
     
@@ -40,19 +41,30 @@ extension HomeViewModel {
     struct CollectionItem: Hashable {
         var id: String
         var imageURL: URL?
+        var relatedSectionType: CollectionSectionType
         
         init(from catModel: CatModel, relatedSectionType: CollectionSectionType) {
-            id = UUID().uuidString
+            self.id = UUID().uuidString
+            self.relatedSectionType = relatedSectionType
             
-            imageURL = catModel.url(
-                sizeType: .square,
-                preferredSideSize: Int(relatedSectionType.itemSize.width)
-            )
+            switch relatedSectionType {
+                case .banner:
+                    imageURL = catModel.url(
+                        sizeType: .original
+                    )
+                    
+                case .slider:
+                    imageURL = catModel.url(
+                        sizeType: .square,
+                        preferredSideSize: Int(relatedSectionType.itemSize.width * UIScreen.main.nativeScale)
+                    )
+            }
         }
         
-        init(id: String = UUID().uuidString, imageURLString: URL? = nil) {
+        init(id: String = UUID().uuidString, imageURLString: URL? = nil, relatedSectionType: CollectionSectionType) {
             self.id = id
             self.imageURL = imageURLString
+            self.relatedSectionType = relatedSectionType
         }
     }
     

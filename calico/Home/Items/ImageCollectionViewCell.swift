@@ -40,18 +40,30 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func config(with imageURL: URL?) {
+    func config(with imageURL: URL?, shouldRoundCorners: Bool = true) {
+        // Setup round corners
+        imageView.layer.cornerRadius = shouldRoundCorners ? 16 : 0
+        
         guard let imageURL else {
             return
         }
         
+        let placeholderImage = UIImage(named: "PlaceholderImage")
+        
         imageView.kf.setImage(
             with: imageURL,
+            placeholder: placeholderImage,
             options: [
-                .onlyLoadFirstFrame,
-                .transition(.flipFromBottom(0.25))
-            ]
-        )
+                .onlyLoadFirstFrame, // no need to load the whole gif
+                .alsoPrefetchToMemory, // prefetch to memory cache (as well as to the disk)
+                .retryStrategy(
+                    DelayRetryStrategy(
+                        maxRetryCount: 3,
+                        retryInterval: .seconds(2)
+                    )
+                ),
+                .transition(.flipFromBottom(0.25)) // a nice image appear animation
+            ])
     }
     
 }

@@ -168,7 +168,10 @@ extension HomeViewController {
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, itemModel) -> UICollectionViewCell? in
                 let cell = collectionView.dequeueReusableCell(indexPath) as ImageCollectionViewCell
-                cell.config(with: itemModel.imageURL)
+                cell.config(
+                    with: itemModel.imageURL,
+                    shouldRoundCorners: itemModel.relatedSectionType == .slider
+                )
                 
                 return cell
             }

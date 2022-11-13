@@ -30,7 +30,7 @@ class HomeViewModel {
                     type: .banner,
                     tag: "funny"
                 ),
-                items: createDummyItems(count: 4)
+                items: createDummyItems(count: 4, sectionType: .banner)
             ),
             DisplayItem(
                 section: CollectionSection(
@@ -39,7 +39,7 @@ class HomeViewModel {
                     description: "Get started with these",
                     tag: "cute"
                 ),
-                items: createDummyItems(count: 4)
+                items: createDummyItems(count: 4, sectionType: .slider)
             ),
             DisplayItem(
                 section: CollectionSection(
@@ -48,7 +48,7 @@ class HomeViewModel {
                     description: "Gems from every corner",
                     tag: "fat"
                 ),
-                items: createDummyItems(count: 4)
+                items: createDummyItems(count: 4, sectionType: .slider)
             ),
             DisplayItem(
                 section: CollectionSection(
@@ -56,7 +56,7 @@ class HomeViewModel {
                     header: "Cats by Mood",
                     description: ""
                 ),
-                items: createDummyItems(count: 4)
+                items: createDummyItems(count: 4, sectionType: .slider)
             )
         ]
         
@@ -148,11 +148,12 @@ extension HomeViewModel {
 extension HomeViewModel {
     
     /// Creates array of N number of unique `CollectionItem`
-    private func createDummyItems(count: Int) -> [CollectionItem] {
+    private func createDummyItems(count: Int, sectionType: CollectionSectionType) -> [CollectionItem] {
         guard count > 0 else {
             return []
         }
         
-        return (0..<count).map({ _ in CollectionItem() })
+        return (0..<count)
+            .map({ _ in CollectionItem(relatedSectionType: sectionType) })
     }
 }
