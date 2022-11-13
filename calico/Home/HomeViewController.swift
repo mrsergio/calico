@@ -68,8 +68,9 @@ extension HomeViewController {
         let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex: Int, _) -> NSCollectionLayoutSection? in
             guard let strongSelf = self else { return nil }
             
-            switch sectionIndex {
-                case 0:
+            let sectionType = strongSelf.viewModel.data[sectionIndex].section.type
+            switch sectionType {
+                case .banner:
                     let item = NSCollectionLayoutItem(
                         layoutSize: NSCollectionLayoutSize(
                             widthDimension: .fractionalWidth(1.0),
@@ -88,7 +89,7 @@ extension HomeViewController {
                     let section = NSCollectionLayoutSection(group: group)
                     return section
                     
-                default:
+                case .slider:
                     // Predefined horizontal distance between items in the slider section
                     let interGroupSpacing: CGFloat = 8.0
                     
@@ -135,7 +136,7 @@ extension HomeViewController {
                     section.orthogonalScrollingBehavior = .continuous
                     section.boundarySupplementaryItems = [sectionHeader]
                     section.interGroupSpacing = interGroupSpacing
-                    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
+                    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
                     
                     return section
             }
