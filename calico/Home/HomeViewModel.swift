@@ -75,8 +75,14 @@ extension HomeViewModel {
             loadCats(by: displayItem.section.tag, limit: 20) { [weak self] result in
                 switch result {
                     case .success(let cats):
+                        // Filter out gifs due to often timeouts :(
                         self?.data[index].items = cats
-                            .compactMap { CollectionItem(from: $0) }
+                            .filter({ !$0.tags.contains("gif") })
+                            .compactMap { CollectionItem(
+                                from: $0,
+                                relatedSectionType: displayItem.section.type
+                            )}
+                        
                         self?.dataDidUpdate.send(())
                         
                     case .failure(let failure):
