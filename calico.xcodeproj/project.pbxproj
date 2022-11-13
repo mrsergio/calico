@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E312920CE34001CCBA3 /* CatModel.swift */; };
+		499B4E35292124FF001CCBA3 /* HomeViewModel+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E34292124FF001CCBA3 /* HomeViewModel+Models.swift */; };
 		499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD14291F6B040062C58B /* AppDelegate.swift */; };
 		499CBD17291F6B040062C58B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD16291F6B040062C58B /* SceneDelegate.swift */; };
 		499CBD1E291F6B050062C58B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499CBD1D291F6B050062C58B /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		499B4E312920CE34001CCBA3 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
+		499B4E34292124FF001CCBA3 /* HomeViewModel+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewModel+Models.swift"; sourceTree = "<group>"; };
 		499CBD11291F6B040062C58B /* calico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499CBD14291F6B040062C58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499CBD16291F6B040062C58B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				499CBD38291FEEA10062C58B /* HomeCoordinator.swift */,
 				499CBD3A291FEF0D0062C58B /* HomeViewModel.swift */,
+				499B4E34292124FF001CCBA3 /* HomeViewModel+Models.swift */,
 				499CBD3C291FEF980062C58B /* HomeViewController.swift */,
 				499CBD3E291FEFE30062C58B /* Items */,
 			);
@@ -240,6 +243,7 @@
 				499CBD32291FA7B10062C58B /* UICollectionView.swift in Sources */,
 				499CBD40291FEFF60062C58B /* ImageCollectionViewCell.swift in Sources */,
 				499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */,
+				499B4E35292124FF001CCBA3 /* HomeViewModel+Models.swift in Sources */,
 				499CBD2C291F788B0062C58B /* Coordinator.swift in Sources */,
 				499CBD49292002390062C58B /* NetworkClient.swift in Sources */,
 				499CBD45292001FB0062C58B /* NetworkProtocol.swift in Sources */,
