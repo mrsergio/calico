@@ -13,6 +13,7 @@ final class ImageCollectionViewCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.image = UIImage(named: "PlaceholderImage")
+        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         
         return $0
@@ -39,12 +40,18 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func config(with urlString: String?) {
-        guard let urlString, let imageURL = URL(string: urlString) else {
+    func config(with imageURL: URL?) {
+        guard let imageURL else {
             return
         }
         
-        imageView.kf.setImage(with: imageURL)
+        imageView.kf.setImage(
+            with: imageURL,
+            options: [
+                .onlyLoadFirstFrame,
+                .transition(.flipFromBottom(0.25))
+            ]
+        )
     }
     
 }
