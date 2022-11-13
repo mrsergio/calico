@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import Combine
+import Kingfisher
 
 final class HomeViewController: UIViewController {
     
@@ -58,6 +59,8 @@ final class HomeViewController: UIViewController {
         )
         
         collectionView.dataSource = dataSource
+        collectionView.prefetchDataSource = self
+        collectionView.isPrefetchingEnabled = true
         
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
@@ -165,7 +168,7 @@ extension HomeViewController {
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, itemModel) -> UICollectionViewCell? in
                 let cell = collectionView.dequeueReusableCell(indexPath) as ImageCollectionViewCell
-                cell.config(with: itemModel.imageURLString)
+                cell.config(with: itemModel.imageURL)
                 
                 return cell
             }
@@ -200,5 +203,17 @@ extension HomeViewController {
         }
         
         return dataSource
+    }
+}
+
+// MARK: - UICollectionView Prefetching
+
+extension HomeViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        let urls = indexPaths.compactMap { (indexPath: IndexPath) in
+            return viewModel.data[indexPath.section].items[indexPath.item].imageURL
+        }
+        ImagePrefetcher(urls: urls).start()
     }
 }

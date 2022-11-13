@@ -39,16 +39,20 @@ extension HomeViewModel {
     
     struct CollectionItem: Hashable {
         var id: String
-        var imageURLString: String?
+        var imageURL: URL?
         
-        init(from catModel: CatModel) {
-            id = catModel.id
-            imageURLString = catModel.url.absoluteString
+        init(from catModel: CatModel, relatedSectionType: CollectionSectionType) {
+            id = UUID().uuidString
+            
+            imageURL = catModel.url(
+                sizeType: .square,
+                preferredSideSize: Int(relatedSectionType.itemSize.width)
+            )
         }
         
-        init(id: String = UUID().uuidString, imageURLString: String? = nil) {
+        init(id: String = UUID().uuidString, imageURLString: URL? = nil) {
             self.id = id
-            self.imageURLString = imageURLString
+            self.imageURL = imageURLString
         }
     }
     
