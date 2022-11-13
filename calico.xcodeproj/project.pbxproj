@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E312920CE34001CCBA3 /* CatModel.swift */; };
 		499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD14291F6B040062C58B /* AppDelegate.swift */; };
 		499CBD17291F6B040062C58B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD16291F6B040062C58B /* SceneDelegate.swift */; };
-		499CBD19291F6B040062C58B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD18291F6B040062C58B /* ViewController.swift */; };
 		499CBD1E291F6B050062C58B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499CBD1D291F6B050062C58B /* Assets.xcassets */; };
 		499CBD21291F6B050062C58B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499CBD1F291F6B050062C58B /* LaunchScreen.storyboard */; };
 		499CBD29291F777E0062C58B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD28291F777E0062C58B /* AppCoordinator.swift */; };
@@ -22,13 +22,17 @@
 		499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD3C291FEF980062C58B /* HomeViewController.swift */; };
 		499CBD40291FEFF60062C58B /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD3F291FEFF60062C58B /* ImageCollectionViewCell.swift */; };
 		499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */; };
+		499CBD45292001FB0062C58B /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD44292001FB0062C58B /* NetworkProtocol.swift */; };
+		499CBD472920021F0062C58B /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD462920021F0062C58B /* NetworkAPI.swift */; };
+		499CBD49292002390062C58B /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD48292002390062C58B /* NetworkClient.swift */; };
+		499CBD4C2920B6970062C58B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 499CBD4B2920B6970062C58B /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		499B4E312920CE34001CCBA3 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		499CBD11291F6B040062C58B /* calico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499CBD14291F6B040062C58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499CBD16291F6B040062C58B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		499CBD18291F6B040062C58B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		499CBD1D291F6B050062C58B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		499CBD20291F6B050062C58B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		499CBD22291F6B050062C58B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +46,9 @@
 		499CBD3C291FEF980062C58B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		499CBD3F291FEFF60062C58B /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionHeaderSwiftUIView.swift; sourceTree = "<group>"; };
+		499CBD44292001FB0062C58B /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		499CBD462920021F0062C58B /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
+		499CBD48292002390062C58B /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,12 +56,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499CBD4C2920B6970062C58B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		499B4E332920E5C5001CCBA3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				499B4E312920CE34001CCBA3 /* CatModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		499CBD08291F6B040062C58B = {
 			isa = PBXGroup;
 			children = (
@@ -80,7 +96,8 @@
 				499CBD35291FA7CD0062C58B /* Home */,
 				499CBD2E291F79F20062C58B /* Extensions */,
 				499CBD2A291F787D0062C58B /* Protocols */,
-				499CBD18291F6B040062C58B /* ViewController.swift */,
+				499B4E332920E5C5001CCBA3 /* Models */,
+				499CBD43292001EC0062C58B /* Network */,
 				499CBD1D291F6B050062C58B /* Assets.xcassets */,
 				499CBD1F291F6B050062C58B /* LaunchScreen.storyboard */,
 				499CBD22291F6B050062C58B /* Info.plist */,
@@ -126,6 +143,16 @@
 			path = Items;
 			sourceTree = "<group>";
 		};
+		499CBD43292001EC0062C58B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				499CBD48292002390062C58B /* NetworkClient.swift */,
+				499CBD44292001FB0062C58B /* NetworkProtocol.swift */,
+				499CBD462920021F0062C58B /* NetworkAPI.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -142,6 +169,9 @@
 			dependencies = (
 			);
 			name = calico;
+			packageProductDependencies = (
+				499CBD4B2920B6970062C58B /* Alamofire */,
+			);
 			productName = calico;
 			productReference = 499CBD11291F6B040062C58B /* calico.app */;
 			productType = "com.apple.product-type.application";
@@ -170,6 +200,9 @@
 				Base,
 			);
 			mainGroup = 499CBD08291F6B040062C58B;
+			packageReferences = (
+				499CBD4A2920B6970062C58B /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 499CBD12291F6B040062C58B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -198,15 +231,18 @@
 			files = (
 				499CBD30291FA7A00062C58B /* Reusable.swift in Sources */,
 				499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */,
+				499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */,
 				499CBD34291FA7C00062C58B /* UICollectionReusableView.swift in Sources */,
+				499CBD472920021F0062C58B /* NetworkAPI.swift in Sources */,
 				499CBD39291FEEA10062C58B /* HomeCoordinator.swift in Sources */,
 				499CBD3B291FEF0D0062C58B /* HomeViewModel.swift in Sources */,
 				499CBD29291F777E0062C58B /* AppCoordinator.swift in Sources */,
 				499CBD32291FA7B10062C58B /* UICollectionView.swift in Sources */,
 				499CBD40291FEFF60062C58B /* ImageCollectionViewCell.swift in Sources */,
-				499CBD19291F6B040062C58B /* ViewController.swift in Sources */,
 				499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */,
 				499CBD2C291F788B0062C58B /* Coordinator.swift in Sources */,
+				499CBD49292002390062C58B /* NetworkClient.swift in Sources */,
+				499CBD45292001FB0062C58B /* NetworkProtocol.swift in Sources */,
 				499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */,
 				499CBD17291F6B040062C58B /* SceneDelegate.swift in Sources */,
 			);
@@ -420,6 +456,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		499CBD4A2920B6970062C58B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		499CBD4B2920B6970062C58B /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 499CBD4A2920B6970062C58B /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 499CBD09291F6B040062C58B /* Project object */;
 }
