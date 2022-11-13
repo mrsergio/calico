@@ -16,16 +16,12 @@ struct NetworkClient: NetworkProtocol {
         qos: .userInitiated
     )
     
-    func fetchEveryonesFavorites(limit: Int) -> AnyPublisher<[CatModel], AFError> {
-        return performRequest([CatModel].self, target: .everyonesFavoriteCats(limit: limit))
-    }
-    
-    func fetchByMood(_ mood: String, limit: Int) -> AnyPublisher<[CatModel], AFError> {
-        return performRequest([CatModel].self, target: .catsByMood(mood: mood, limit: limit))
+    func fetchByTag(_ tag: String, limit: Int) -> AnyPublisher<[CatModel], AFError> {
+        return performRequest([CatModel].self, target: .fetchByTag(tag, limit: limit))
     }
     
     func fetchAvailableTags() -> AnyPublisher<[String], AFError> {
-        return performRequest([String].self, target: .tags)
+        return performRequest([String].self, target: .fetchAvailableTags)
     }
 }
 

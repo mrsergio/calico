@@ -10,7 +10,6 @@ import Alamofire
 import Combine
 
 protocol NetworkProtocol {
-    func fetchEveryonesFavorites(limit: Int) -> AnyPublisher<[CatModel], AFError>
-    func fetchByMood(_ mood: String, limit: Int) -> AnyPublisher<[CatModel], AFError>
+    func fetchByTag(_ tag: String, limit: Int) -> AnyPublisher<[CatModel], AFError>
     func fetchAvailableTags() -> AnyPublisher<[String], AFError>
 }

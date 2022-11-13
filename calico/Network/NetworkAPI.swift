@@ -9,9 +9,8 @@ import Foundation
 import Alamofire
 
 enum NetworkAPI {
-    case everyonesFavoriteCats(limit: Int)
-    case catsByMood(mood: String, limit: Int)
-    case tags
+    case fetchByTag(_ tag: String, limit: Int)
+    case fetchAvailableTags
 }
 
 enum RequestTask {
@@ -27,10 +26,10 @@ extension NetworkAPI {
     
     var path: String {
         switch self {
-            case .everyonesFavoriteCats, .catsByMood:
+            case .fetchByTag:
                 return "cats"
                 
-            case .tags:
+            case .fetchAvailableTags:
                 return "tags"
         }
     }
@@ -41,25 +40,16 @@ extension NetworkAPI {
     
     var request: RequestTask {
         switch self {
-            case .everyonesFavoriteCats(let limit):
+            case .fetchByTag(let tag, let limit):
                 return .parameters(
                     parameters: [
-                        "tags": "cute",
+                        "tags": tag,
                         "limit": limit
                     ],
                     encoding: URLEncoding.default
                 )
                 
-            case .catsByMood(let mood, let limit):
-                return .parameters(
-                    parameters: [
-                        "tags": mood,
-                        "limit": limit
-                    ],
-                    encoding: URLEncoding.default
-                )
-                
-            case .tags:
+            case .fetchAvailableTags:
                 return .plain
         }
     }
