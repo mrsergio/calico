@@ -10,6 +10,7 @@
 		499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E312920CE34001CCBA3 /* CatModel.swift */; };
 		499B4E35292124FF001CCBA3 /* HomeViewModel+Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E34292124FF001CCBA3 /* HomeViewModel+Models.swift */; };
 		499B4E38292127DE001CCBA3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 499B4E37292127DE001CCBA3 /* Kingfisher */; };
+		499B4E3A2921401B001CCBA3 /* ImageSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E392921401B001CCBA3 /* ImageSizeType.swift */; };
 		499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD14291F6B040062C58B /* AppDelegate.swift */; };
 		499CBD17291F6B040062C58B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD16291F6B040062C58B /* SceneDelegate.swift */; };
 		499CBD1E291F6B050062C58B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499CBD1D291F6B050062C58B /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		499B4E312920CE34001CCBA3 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		499B4E34292124FF001CCBA3 /* HomeViewModel+Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewModel+Models.swift"; sourceTree = "<group>"; };
+		499B4E392921401B001CCBA3 /* ImageSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizeType.swift; sourceTree = "<group>"; };
 		499CBD11291F6B040062C58B /* calico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499CBD14291F6B040062C58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499CBD16291F6B040062C58B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				499B4E312920CE34001CCBA3 /* CatModel.swift */,
+				499B4E392921401B001CCBA3 /* ImageSizeType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499B4E3A2921401B001CCBA3 /* ImageSizeType.swift in Sources */,
 				499CBD30291FA7A00062C58B /* Reusable.swift in Sources */,
 				499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */,
 				499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */,
