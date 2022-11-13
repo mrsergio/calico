@@ -7,135 +7,48 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import Combine
 
-struct HomeViewModel {
+class HomeViewModel {
     
-    enum CollectionSectionType {
-        case banner, slider
-        
-        var sectionHeight: CGFloat {
-            switch self {
-                case .banner: return 200.0
-                case .slider: return 144.0
-            }
-        }
-        
-        var itemSize: CGSize {
-            // Banner item size width will be ignored since it is equal to the screen width
-            switch self {
-                case .banner: return CGSize(width: 200, height: 200)
-                case .slider: return CGSize(width: 120, height: 120)
-            }
-        }
-    }
+    private var cancellables = Set<AnyCancellable>()
+    private let network = NetworkClient()
     
-    struct CollectionSection: Hashable {
-        
-        var id: String = UUID().uuidString
-        var type: CollectionSectionType
-        
-        var header: String = ""
-        var description: String = ""
-    }
-    
-    struct CollectionItem: Hashable {
-        
-        var id: String = UUID().uuidString
-        var imageURLString: String?
-    }
-    
-    struct DisplayItem {
-        let section: CollectionSection
-        let items: [CollectionItem]
-        
-        var sectionHeight: CGFloat {
-            section.type.sectionHeight
-        }
-        
-        var itemSize: CGSize {
-            section.type.itemSize
-        }
-        
-        var sectionHeader: String {
-            section.header
-        }
-        
-        var sectionDescription: String {
-            section.description
-        }
-    }
-    
-    var data: [DisplayItem] = []
+    let dataDidUpdate = PassthroughSubject<Void, Never>()
+    private(set) var data: [DisplayItem] = []
     
     init() {
+        setupData()
+    }
+    
+    private func setupData() {
+        // Predefine display sections
         data = [
             DisplayItem(
-                section: CollectionSection(type: .banner),
-                items: [
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328")
-                ]
+                section: CollectionSection(
+                    type: .banner,
+                    tag: "funny"
+                ),
+                items: createDummyItems(count: 4)
             ),
             DisplayItem(
                 section: CollectionSection(
                     type: .slider,
                     header: "Must-Have Cats",
-                    description: "Get started with these"
+                    description: "Get started with these",
+                    tag: "cute"
                 ),
-                items: [
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328")
-                ]
+                items: createDummyItems(count: 4)
             ),
             DisplayItem(
                 section: CollectionSection(
                     type: .slider,
                     header: "Everyone's Favorites",
-                    description: "Gems from every corner"
+                    description: "Gems from every corner",
+                    tag: "fat"
                 ),
-                items: [
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328")
-                ]
+                items: createDummyItems(count: 4)
             ),
             DisplayItem(
                 section: CollectionSection(
@@ -143,32 +56,62 @@ struct HomeViewModel {
                     header: "Cats by Mood",
                     description: ""
                 ),
-                items: [
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328"),
-                    CollectionItem(imageURLString: "https://cataas.com/cat?width=328")
-                ]
+                items: createDummyItems(count: 4)
             )
         ]
+        
+        // Load predefined sections with a data
+        loadData()
+    }
+}
+
+// MARK: - Network
+
+extension HomeViewModel {
+    
+    /// Load items for an each predefined data section
+    func loadData() {
+        for (index, displayItem) in data.enumerated() {
+            loadCats(by: displayItem.section.tag, limit: 20) { [weak self] result in
+                switch result {
+                    case .success(let cats):
+                        self?.data[index].items = cats
+                            .compactMap { CollectionItem(from: $0) }
+                        self?.dataDidUpdate.send(())
+                        
+                    case .failure(let failure):
+                        print("Error happened: \(failure)")
+                }
+            }
+        }
+    }
+    
+    /// Load array of cat models from API
+    /// - Parameters:
+    ///   - tag: items with particular tag to fetch
+    ///   - limit: limit of number of items to fetch
+    ///   - callback: success or failure result to handle
+    private func loadCats(
+        by tag: String,
+        limit: Int,
+        callback: @escaping ((Result<[CatModel], AFError>) -> Void)
+    ) {
+        network
+            .fetchByTag(tag, limit: limit)
+            .receive(on: DispatchQueue.main)
+            .sink { completion in
+                switch completion {
+                    case .finished:
+                        break
+                        
+                    case .failure(let error):
+                        callback(.failure(error))
+                }
+                
+            } receiveValue: { (cats: [CatModel]) in
+                callback(.success(cats))
+            }
+            .store(in: &cancellables)
     }
 }
 
@@ -191,5 +134,19 @@ extension HomeViewModel {
         }
         
         return snapshot
+    }
+}
+
+// MARK: - Helpers
+
+extension HomeViewModel {
+    
+    /// Creates array of N number of unique `CollectionItem`
+    private func createDummyItems(count: Int) -> [CollectionItem] {
+        guard count > 0 else {
+            return []
+        }
+        
+        return (0..<count).map({ _ in CollectionItem() })
     }
 }

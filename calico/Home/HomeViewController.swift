@@ -87,6 +87,7 @@ extension HomeViewController {
                     )
                     
                     let section = NSCollectionLayoutSection(group: group)
+                    section.orthogonalScrollingBehavior = .paging
                     return section
                     
                 case .slider:
