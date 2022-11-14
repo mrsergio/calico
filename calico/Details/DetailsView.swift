@@ -14,6 +14,7 @@ struct DetailsView: View {
     
     let url: URL?
     let quote: Quote?
+    var shareButtonDidTap: (() -> ())
     
     var body: some View {
         VStack {
@@ -64,7 +65,7 @@ struct DetailsView: View {
                 Spacer()
 
                 Button("Share") {
-                    //
+                    shareButtonDidTap()
                     
                     // Automatically untap the button to perform scaling animation
                     tap = true
@@ -86,18 +87,19 @@ struct DetailsView: View {
             .padding(.bottom, 32)
         }
         .frame(alignment: .top)
-        .edgesIgnoringSafeArea(Edge.Set.top)
+        .edgesIgnoringSafeArea(.top)
     }
 }
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsView(
-            url: URL(string: "https://cataas.com/cat/Rn6xqsiHb9B7qgLw?type=square&width=1200")!,
+            url: URL(string: "https://cataas.com/cat/Rn6xqsiHb9B7qgLw")!,
             quote: Quote(
                 title: "In ancient times cats were worshipped as gods; they have not forgotten this.",
                 author: "Terry Pratchett"
-            )
+            ),
+            shareButtonDidTap: { }
         )
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 struct CollectionItem: Hashable {
     var id: String
     var imageURL: URL?
+    var originalImageURL: URL?
     
     var relatedSectionType: CollectionSectionType
     var tag: String
@@ -19,6 +20,7 @@ struct CollectionItem: Hashable {
         self.id = UUID().uuidString
         self.relatedSectionType = relatedSectionType
         self.tag = tag
+        self.originalImageURL = catModel.url(sizeType: .original)
         
         switch relatedSectionType {
             case .banner:
@@ -37,9 +39,10 @@ struct CollectionItem: Hashable {
         }
     }
     
-    init(id: String = UUID().uuidString, imageURLString: URL? = nil, relatedSectionType: CollectionSectionType, tag: String) {
+    init(id: String = UUID().uuidString, imageURLString: URL? = nil, originalImageURL: URL? = nil, relatedSectionType: CollectionSectionType, tag: String) {
         self.id = id
         self.imageURL = imageURLString
+        self.originalImageURL = originalImageURL
         self.relatedSectionType = relatedSectionType
         self.tag = tag
     }

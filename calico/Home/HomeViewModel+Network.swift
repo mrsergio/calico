@@ -128,6 +128,7 @@ extension HomeViewModel {
                 
                 let randomTags = tags
                     .filter({ !$0.isEmpty }) // filter out empty tags
+                    .filter({ !$0.contains("gif") }) // filter out gif animations
                     .filter({ $0.count < 10 }) // filter out long tags
                     .shuffled()
                     .prefix(numberOfRandomTagsToFilterOut) // take first N items

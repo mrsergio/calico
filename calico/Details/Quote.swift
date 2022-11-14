@@ -38,10 +38,6 @@ struct Quote {
                 author: "Albert Schweitzer"
             ),
             Quote(
-                title: "Owners of dogs will have noticed that, if you provide them with food and water and shelter and affection, they will think you are God. Whereas owners of cats are compelled to realize that, if you provide them with food and water and affection, they draw the conclusion that they are God.",
-                author: "Christopher Hitchens"
-            ),
-            Quote(
                 title: "A happy arrangement: many people prefer cats to other people, and many cats prefer people to other cats.",
                 author: "Mason Cooley"
             ),

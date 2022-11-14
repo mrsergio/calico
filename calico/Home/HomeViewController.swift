@@ -99,7 +99,12 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let collectionItem = viewModel.data[indexPath.section].items[indexPath.item]
         
-        let detailsViewController = UIHostingController(rootView: DetailsView(url: collectionItem.imageURL, quote: Quote.randomQuote))
+        let itemDetailsView = DetailsView(url: collectionItem.originalImageURL, quote: Quote.randomQuote) { [weak self] in
+            /* "Share" button handler */
+            self?.shareItem(collectionItem)
+        }
+        
+        let detailsViewController = UIHostingController(rootView: itemDetailsView)
         detailsViewController.modalPresentationStyle = .formSheet
         
         present(detailsViewController, animated: true)
@@ -245,4 +250,56 @@ extension HomeViewController: UICollectionViewDataSourcePrefetching {
         }
         ImagePrefetcher(urls: urls).start()
     }
+}
+
+// MARK: - Helpers
+
+extension HomeViewController {
+    
+    /// Share given item via iOS Share Sheet
+    /// - Parameter collectionItem: item to share
+    func shareItem(_ collectionItem: CollectionItem) {
+        // Get non-optional original URL to use a key
+        guard let originalImageURL = collectionItem.originalImageURL else {
+            return
+        }
+        
+        // Retrieve image from Kingfisher's cache, save the image to disk and launch share sheet (perform in background since it is an expensive task)
+        DispatchQueue.global(qos: .userInteractive).async {
+            ImageCache.default.retrieveImage(forKey: originalImageURL.absoluteString) { [weak self] result in
+                switch result {
+                    case .success(let cacheResult):
+                        /* Save retrieved image to the temporary folder first */
+                        
+                        let fileURL = FileManager.default
+                            .temporaryDirectory
+                            .appending(path: collectionItem.id)
+                            .appendingPathExtension("jpg")
+                        
+                        let imageData: Data? = cacheResult.image?.jpegData(compressionQuality: 0.9)
+                        
+                        do {
+                            if !FileManager.default.fileExists(atPath: fileURL.relativePath) {
+                                try imageData?.write(to: fileURL)
+                            }
+                        } catch {
+                            print("Error writing on disk")
+                            return
+                        }
+                        
+                        DispatchQueue.main.async { [weak self] in
+                            /* Present share sheet */
+                            let items = [fileURL]
+                            let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: [])
+                            self?.presentedViewController?.present(activityViewController, animated: true)
+                        }
+                        
+                    case .failure(let error):
+                        print("Error while retrieving an image from Kingfisher cache: \(error)")
+                        return
+                }
+            }
+        }
+    }
+    
 }
