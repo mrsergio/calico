@@ -105,7 +105,8 @@ extension HomeViewController: UICollectionViewDelegate {
         }
         
         let detailsViewController = UIHostingController(rootView: itemDetailsView)
-        detailsViewController.modalPresentationStyle = .formSheet
+        detailsViewController.popoverPresentationController?.sourceView = collectionView
+        detailsViewController.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .pad ? .pageSheet : .formSheet
         
         present(detailsViewController, animated: true)
     }
@@ -287,10 +288,22 @@ extension HomeViewController {
                             return
                         }
                         
+                        /* Present share sheet */
                         DispatchQueue.main.async { [weak self] in
-                            /* Present share sheet */
-                            let items = [fileURL]
-                            let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: [])
+                            let activityViewController = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+                            activityViewController.popoverPresentationController?.sourceView = self?.presentedViewController?.view
+                            
+                            if UIDevice.current.userInterfaceIdiom == .pad {
+                                // iPad-related improvements to position share sheet above "Share" button
+                                let parentViewSize = self?.presentedViewController?.view.bounds.size ?? UIScreen.main.bounds.size
+                                activityViewController.popoverPresentationController?.sourceRect = CGRect(
+                                    x: parentViewSize.width / 2,
+                                    y: parentViewSize.height - 76,
+                                    width: 0,
+                                    height: 0
+                                )
+                            }
+                            
                             self?.presentedViewController?.present(activityViewController, animated: true)
                         }
                         
