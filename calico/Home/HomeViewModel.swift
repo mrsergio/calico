@@ -7,16 +7,15 @@
 
 import Foundation
 import UIKit
-import Alamofire
 import Combine
 
 class HomeViewModel {
     
-    private var cancellables = Set<AnyCancellable>()
-    private let network = NetworkClient()
+    internal var cancellables = Set<AnyCancellable>()
+    internal let network = NetworkClient()
     
     let dataDidUpdate = PassthroughSubject<Void, Never>()
-    private(set) var data: [DisplayItem] = []
+    internal var data: [DisplayItem] = []
     
     init() {
         setupData()
@@ -28,96 +27,35 @@ class HomeViewModel {
             DisplayItem(
                 section: CollectionSection(
                     type: .banner,
-                    tag: "funny"
+                    tag: "kitten"
                 ),
-                items: createDummyItems(count: 4, sectionType: .banner)
+                items: createDummyCollectionItems(count: 4, sectionType: .banner)
             ),
             DisplayItem(
                 section: CollectionSection(
-                    type: .slider,
+                    type: .sliderPlain,
                     header: "Must-Have Cats",
                     description: "Get started with these",
                     tag: "cute"
                 ),
-                items: createDummyItems(count: 4, sectionType: .slider)
+                items: createDummyCollectionItems(count: 4, sectionType: .sliderPlain)
             ),
             DisplayItem(
                 section: CollectionSection(
-                    type: .slider,
+                    type: .sliderPlain,
                     header: "Everyone's Favorites",
                     description: "Gems from every corner",
                     tag: "fat"
                 ),
-                items: createDummyItems(count: 4, sectionType: .slider)
-            ),
-            DisplayItem(
-                section: CollectionSection(
-                    type: .slider,
-                    header: "Cats by Mood",
-                    description: ""
-                ),
-                items: createDummyItems(count: 4, sectionType: .slider)
+                items: createDummyCollectionItems(count: 4, sectionType: .sliderPlain)
             )
         ]
         
         // Load predefined sections with a data
-        loadData()
-    }
-}
-
-// MARK: - Network
-
-extension HomeViewModel {
-    
-    /// Load items for an each predefined data section
-    func loadData() {
-        for (index, displayItem) in data.enumerated() {
-            loadCats(by: displayItem.section.tag, limit: 20) { [weak self] result in
-                switch result {
-                    case .success(let cats):
-                        // Filter out gifs due to often timeouts :(
-                        self?.data[index].items = cats
-                            .filter({ !$0.tags.contains("gif") })
-                            .compactMap { CollectionItem(
-                                from: $0,
-                                relatedSectionType: displayItem.section.type
-                            )}
-                        
-                        self?.dataDidUpdate.send(())
-                        
-                    case .failure(let failure):
-                        print("Error happened: \(failure)")
-                }
-            }
-        }
-    }
-    
-    /// Load array of cat models from API
-    /// - Parameters:
-    ///   - tag: items with particular tag to fetch
-    ///   - limit: limit of number of items to fetch
-    ///   - callback: success or failure result to handle
-    private func loadCats(
-        by tag: String,
-        limit: Int,
-        callback: @escaping ((Result<[CatModel], AFError>) -> Void)
-    ) {
-        network
-            .fetchByTag(tag, limit: limit)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                    case .finished:
-                        break
-                        
-                    case .failure(let error):
-                        callback(.failure(error))
-                }
-                
-            } receiveValue: { (cats: [CatModel]) in
-                callback(.success(cats))
-            }
-            .store(in: &cancellables)
+        loadPredefinedData()
+        
+        // Load mood section (based on fetched random tags)
+        loadMoodSection()
     }
 }
 
@@ -148,12 +86,12 @@ extension HomeViewModel {
 extension HomeViewModel {
     
     /// Creates array of N number of unique `CollectionItem`
-    private func createDummyItems(count: Int, sectionType: CollectionSectionType) -> [CollectionItem] {
+    private func createDummyCollectionItems(count: Int, sectionType: CollectionSectionType) -> [CollectionItem] {
         guard count > 0 else {
             return []
         }
         
         return (0..<count)
-            .map({ _ in CollectionItem(relatedSectionType: sectionType) })
+            .map({ _ in CollectionItem(relatedSectionType: sectionType, tag: "") })
     }
 }
