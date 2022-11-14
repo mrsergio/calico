@@ -16,7 +16,7 @@ final class HomeViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     private var viewModel: HomeViewModel
     
-    typealias DataSource = UICollectionViewDiffableDataSource<HomeViewModel.CollectionSection, HomeViewModel.CollectionItem>
+    typealias DataSource = UICollectionViewDiffableDataSource<CollectionSection, CollectionItem>
     private lazy var dataSource: DataSource = createDataSource()
     
     private lazy var collectionView: UICollectionView = {
@@ -107,7 +107,7 @@ extension HomeViewController {
                     section.orthogonalScrollingBehavior = .paging
                     return section
                     
-                case .slider:
+                case .sliderPlain, .sliderWithOverlay:
                     // Predefined horizontal distance between items in the slider section
                     let interGroupSpacing: CGFloat = 8.0
                     
