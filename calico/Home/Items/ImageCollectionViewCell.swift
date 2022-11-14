@@ -40,11 +40,11 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func config(with imageURL: URL?, shouldRoundCorners: Bool = true) {
+    func config(with collectionItem: HomeViewModel.CollectionItem) {
         // Setup round corners
-        imageView.layer.cornerRadius = shouldRoundCorners ? 16 : 0
+        imageView.layer.cornerRadius = collectionItem.relatedSectionType == .slider ? 16 : 0
         
-        guard let imageURL else {
+        guard let imageURL = collectionItem.imageURL else {
             return
         }
         
