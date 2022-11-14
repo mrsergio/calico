@@ -41,6 +41,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func commonInit() {
+        setupCommonUI()
         updateDataSource()
         setupCollectionView()
         
@@ -50,6 +51,19 @@ final class HomeViewController: UIViewController {
                 self?.updateDataSource()
             }
             .store(in: &cancellables)
+    }
+    
+    private func setupCommonUI() {
+        view.backgroundColor = UIColor.white
+        
+        let titles: [String] = [
+            "Your pocket cat finder 🔎",
+            "Find your cutie asap 💖",
+            "🐈 Calico the App 🐈",
+            "🐾 Dirty paws are everywhere 🐾"
+        ]
+
+        navigationItem.title = titles.shuffled().randomElement()
     }
     
     private func setupCollectionView() {
