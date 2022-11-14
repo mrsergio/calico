@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4953AF5C29225293007039E2 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953AF5B29225293007039E2 /* QuoteView.swift */; };
+		4953AF6029225EA5007039E2 /* PawsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953AF5F29225EA5007039E2 /* PawsView.swift */; };
+		4953AF6229226825007039E2 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953AF6129226825007039E2 /* Quote.swift */; };
 		499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E312920CE34001CCBA3 /* CatModel.swift */; };
 		499B4E38292127DE001CCBA3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 499B4E37292127DE001CCBA3 /* Kingfisher */; };
 		499B4E3A2921401B001CCBA3 /* ImageSizeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E392921401B001CCBA3 /* ImageSizeType.swift */; };
@@ -14,6 +17,7 @@
 		499B4E3F29220CBF001CCBA3 /* CollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E3E29220CBF001CCBA3 /* CollectionSection.swift */; };
 		499B4E4129220CD0001CCBA3 /* DisplayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E4029220CD0001CCBA3 /* DisplayItem.swift */; };
 		499B4E43292235D4001CCBA3 /* HomeViewModel+Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E42292235D4001CCBA3 /* HomeViewModel+Network.swift */; };
+		499B4E46292242BD001CCBA3 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B4E45292242BD001CCBA3 /* DetailsView.swift */; };
 		499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD14291F6B040062C58B /* AppDelegate.swift */; };
 		499CBD17291F6B040062C58B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD16291F6B040062C58B /* SceneDelegate.swift */; };
 		499CBD1E291F6B050062C58B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499CBD1D291F6B050062C58B /* Assets.xcassets */; };
@@ -35,12 +39,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4953AF5B29225293007039E2 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
+		4953AF5F29225EA5007039E2 /* PawsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawsView.swift; sourceTree = "<group>"; };
+		4953AF6129226825007039E2 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		499B4E312920CE34001CCBA3 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		499B4E392921401B001CCBA3 /* ImageSizeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizeType.swift; sourceTree = "<group>"; };
 		499B4E3C29220CAB001CCBA3 /* CollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionItem.swift; sourceTree = "<group>"; };
 		499B4E3E29220CBF001CCBA3 /* CollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionSection.swift; sourceTree = "<group>"; };
 		499B4E4029220CD0001CCBA3 /* DisplayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayItem.swift; sourceTree = "<group>"; };
 		499B4E42292235D4001CCBA3 /* HomeViewModel+Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewModel+Network.swift"; sourceTree = "<group>"; };
+		499B4E45292242BD001CCBA3 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		499CBD11291F6B040062C58B /* calico.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = calico.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499CBD14291F6B040062C58B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499CBD16291F6B040062C58B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +102,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		499B4E4429224003001CCBA3 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				499B4E45292242BD001CCBA3 /* DetailsView.swift */,
+				4953AF5B29225293007039E2 /* QuoteView.swift */,
+				4953AF5F29225EA5007039E2 /* PawsView.swift */,
+				4953AF6129226825007039E2 /* Quote.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		499CBD08291F6B040062C58B = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +136,7 @@
 				499CBD16291F6B040062C58B /* SceneDelegate.swift */,
 				499CBD28291F777E0062C58B /* AppCoordinator.swift */,
 				499CBD35291FA7CD0062C58B /* Home */,
+				499B4E4429224003001CCBA3 /* Details */,
 				499CBD2E291F79F20062C58B /* Extensions */,
 				499CBD2A291F787D0062C58B /* Protocols */,
 				499B4E332920E5C5001CCBA3 /* Models */,
@@ -258,11 +278,13 @@
 			files = (
 				499B4E3A2921401B001CCBA3 /* ImageSizeType.swift in Sources */,
 				499CBD30291FA7A00062C58B /* Reusable.swift in Sources */,
+				4953AF5C29225293007039E2 /* QuoteView.swift in Sources */,
 				499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */,
 				499B4E322920CE34001CCBA3 /* CatModel.swift in Sources */,
 				499CBD34291FA7C00062C58B /* UICollectionReusableView.swift in Sources */,
 				499B4E4129220CD0001CCBA3 /* DisplayItem.swift in Sources */,
 				499CBD472920021F0062C58B /* NetworkAPI.swift in Sources */,
+				4953AF6029225EA5007039E2 /* PawsView.swift in Sources */,
 				499CBD39291FEEA10062C58B /* HomeCoordinator.swift in Sources */,
 				499B4E43292235D4001CCBA3 /* HomeViewModel+Network.swift in Sources */,
 				499CBD3B291FEF0D0062C58B /* HomeViewModel.swift in Sources */,
@@ -271,8 +293,10 @@
 				499CBD40291FEFF60062C58B /* ImageCollectionViewCell.swift in Sources */,
 				499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */,
 				499CBD2C291F788B0062C58B /* Coordinator.swift in Sources */,
+				4953AF6229226825007039E2 /* Quote.swift in Sources */,
 				499CBD49292002390062C58B /* NetworkClient.swift in Sources */,
 				499B4E3F29220CBF001CCBA3 /* CollectionSection.swift in Sources */,
+				499B4E46292242BD001CCBA3 /* DetailsView.swift in Sources */,
 				499B4E3D29220CAB001CCBA3 /* CollectionItem.swift in Sources */,
 				499CBD45292001FB0062C58B /* NetworkProtocol.swift in Sources */,
 				499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */,

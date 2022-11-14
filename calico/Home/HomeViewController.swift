@@ -73,6 +73,7 @@ final class HomeViewController: UIViewController {
         )
         
         collectionView.dataSource = dataSource
+        collectionView.delegate = self
         collectionView.prefetchDataSource = self
         collectionView.isPrefetchingEnabled = true
         
@@ -88,6 +89,20 @@ final class HomeViewController: UIViewController {
     /// Reload collectionView with (supposed to be new) data from viewModel
     func updateDataSource() {
         dataSource.apply(viewModel.dataSnapshot)
+    }
+}
+
+// MARK: - UICollectionView delegate
+
+extension HomeViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let collectionItem = viewModel.data[indexPath.section].items[indexPath.item]
+        
+        let detailsViewController = UIHostingController(rootView: DetailsView(url: collectionItem.imageURL, quote: Quote.randomQuote))
+        detailsViewController.modalPresentationStyle = .formSheet
+        
+        present(detailsViewController, animated: true)
     }
 }
 
