@@ -14,7 +14,7 @@ enum CollectionSectionType: Hashable {
         switch self {
             case .banner: return 200.0
             case .sliderPlain: return 144.0
-            case .sliderWithOverlay: return 200.0
+            case .sliderWithOverlay: return 120.0
         }
     }
     
