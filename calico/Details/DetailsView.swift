@@ -10,8 +10,6 @@ import Kingfisher
 
 struct DetailsView: View {
     
-    @State var tap: Bool = false
-    
     let url: URL?
     let quote: Quote?
     var shareButtonDidTap: (() -> ())
@@ -66,19 +64,9 @@ struct DetailsView: View {
 
                 Button("Share") {
                     shareButtonDidTap()
-                    
-                    // Automatically untap the button to perform scaling animation
-                    tap = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        tap = false
-                    }
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(Color.yellow)
-                .foregroundColor(Color.black)
+                .buttonStyle(GradientButtonStyle())
                 .font(.title2)
-                .scaleEffect(tap ? 0.96 : 1)
-                .animation(.spring(response: 0.4, dampingFraction: 0.6), value: tap)
                 
                 Spacer()
                 PawsView()
