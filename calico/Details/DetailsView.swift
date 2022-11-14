@@ -82,7 +82,7 @@ struct DetailsView: View {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         DetailsView(
-            url: URL(string: "https://cataas.com/cat/Rn6xqsiHb9B7qgLw")!,
+            url: URL(string: "https://cataas.com/cat/OQW6RVeKZQ4iIPnQ")!,
             quote: Quote(
                 title: "In ancient times cats were worshipped as gods; they have not forgotten this.",
                 author: "Terry Pratchett"

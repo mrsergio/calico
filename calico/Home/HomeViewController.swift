@@ -13,17 +13,25 @@ import Kingfisher
 
 final class HomeViewController: UIViewController {
     
+    // MARK: Variables
+    
     private var cancellables = Set<AnyCancellable>()
     private var viewModel: HomeViewModel
     
     typealias DataSource = UICollectionViewDiffableDataSource<CollectionSection, CollectionItem>
     private lazy var dataSource: DataSource = createDataSource()
     
-    private lazy var collectionView: UICollectionView = {
+    private(set) lazy var collectionView: UICollectionView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UICollectionView(frame: .zero, collectionViewLayout: createLayout()))
+    
+    // MARK: Actions
+    
+    let didSelectItem = PassthroughSubject<CollectionItem, Never>()
 
+    // MARK: Lifecycle
+    
     override func viewDidLoad() {
         viewModel = HomeViewModel()
         super.viewDidLoad()
@@ -39,6 +47,16 @@ final class HomeViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("Storyboards are not supported")
     }
+    
+    /// Reload collectionView with (supposed to be new) data from viewModel
+    func updateDataSource() {
+        dataSource.apply(viewModel.dataSnapshot)
+    }
+}
+
+// MARK: - Setup UI
+
+extension HomeViewController {
     
     private func commonInit() {
         setupCommonUI()
@@ -85,11 +103,6 @@ final class HomeViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
-    /// Reload collectionView with (supposed to be new) data from viewModel
-    func updateDataSource() {
-        dataSource.apply(viewModel.dataSnapshot)
-    }
 }
 
 // MARK: - UICollectionView delegate
@@ -98,17 +111,7 @@ extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let collectionItem = viewModel.data[indexPath.section].items[indexPath.item]
-        
-        let itemDetailsView = DetailsView(url: collectionItem.originalImageURL, quote: Quote.randomQuote) { [weak self] in
-            /* "Share" button handler */
-            self?.shareItem(collectionItem)
-        }
-        
-        let detailsViewController = UIHostingController(rootView: itemDetailsView)
-        detailsViewController.popoverPresentationController?.sourceView = collectionView
-        detailsViewController.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .pad ? .pageSheet : .formSheet
-        
-        present(detailsViewController, animated: true)
+        didSelectItem.send(collectionItem)
     }
 }
 
