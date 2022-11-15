@@ -66,12 +66,12 @@ extension HomeViewModel {
         network
             .fetchAvailableTags()
             .flatMap({ (tags: [String]) in
-                let numberOfRandomTagsToFilterOut = 5
+                let numberOfRandomTagsToFilterOut = 10
                 
                 let randomTags = tags
                     .filter({ !$0.isEmpty }) // filter out empty tags
                     .filter({ !$0.contains("gif") }) // filter out gif animations
-                    .filter({ $0.count < 10 }) // filter out long tags
+                    .filter({ $0.count < 16 }) // filter out tags with long names
                     .shuffled()
                     .prefix(numberOfRandomTagsToFilterOut) // take first N items
                 
