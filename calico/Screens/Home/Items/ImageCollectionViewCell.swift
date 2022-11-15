@@ -80,11 +80,11 @@ final class ImageCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = collectionItem.relatedSectionType != .banner ? 16 : 0
         
         // Display dark overlay over the image for the `sliderWithOverlay` section only
-        overlayView.isHidden = collectionItem.relatedSectionType != .sliderWithOverlay
-        overlayView.layer.cornerRadius = collectionItem.relatedSectionType == .sliderWithOverlay ? 16 : 0
+        overlayView.isHidden = collectionItem.relatedSectionType != .wideWithOverlay
+        overlayView.layer.cornerRadius = collectionItem.relatedSectionType == .wideWithOverlay ? 16 : 0
         
         // Display title over the image for the `sliderWithOverlay` section only
-        titleLabel.isHidden = collectionItem.relatedSectionType != .sliderWithOverlay
+        titleLabel.isHidden = collectionItem.relatedSectionType != .wideWithOverlay
         titleLabel.text = collectionItem.tag
         
         /* Set image */

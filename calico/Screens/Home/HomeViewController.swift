@@ -145,7 +145,7 @@ extension HomeViewController {
                     section.orthogonalScrollingBehavior = .paging
                     return section
                     
-                case .sliderPlain, .sliderWithOverlay:
+                case .square, .wideWithOverlay:
                     // Predefined horizontal distance between items in the slider section
                     let interGroupSpacing: CGFloat = 8.0
                     

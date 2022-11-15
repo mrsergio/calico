@@ -33,21 +33,21 @@ class HomeViewModel {
             ),
             DisplayItem(
                 section: CollectionSection(
-                    type: .sliderPlain,
+                    type: .square,
                     header: "Must-Have Cats",
                     description: "Get started with these",
                     tag: "cute"
                 ),
-                items: createDummyCollectionItems(count: 4, sectionType: .sliderPlain)
+                items: createDummyCollectionItems(count: 4, sectionType: .square)
             ),
             DisplayItem(
                 section: CollectionSection(
-                    type: .sliderPlain,
+                    type: .square,
                     header: "Everyone's Favorites",
                     description: "Gems from every corner",
                     tag: "fat"
                 ),
-                items: createDummyCollectionItems(count: 4, sectionType: .sliderPlain)
+                items: createDummyCollectionItems(count: 4, sectionType: .square)
             )
         ]
         

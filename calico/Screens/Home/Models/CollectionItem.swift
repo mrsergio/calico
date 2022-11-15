@@ -28,7 +28,7 @@ struct CollectionItem: Hashable {
                     sizeType: .original
                 )
                 
-            case .sliderPlain, .sliderWithOverlay:
+            case .square, .wideWithOverlay:
                 // Image width to fetch from API later
                 let preferredSideSize = Int(relatedSectionType.itemSize.width * UIScreen.main.nativeScale)
                 

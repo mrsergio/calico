@@ -158,7 +158,7 @@ extension HomeViewModel {
                             // Convert it into the CollectionItem
                             let itemModel = CollectionItem(
                                 from: catModel,
-                                relatedSectionType: .sliderWithOverlay,
+                                relatedSectionType: .wideWithOverlay,
                                 tag: tag
                             )
                             
