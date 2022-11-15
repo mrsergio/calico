@@ -29,6 +29,7 @@ final class HomeViewController: UIViewController {
     // MARK: Actions
     
     let didSelectItem = PassthroughSubject<IndexPath, Never>()
+    let didTapSeeAllForSection = PassthroughSubject<CollectionSection, Never>()
 
     // MARK: Lifecycle
     
@@ -221,7 +222,11 @@ extension HomeViewController {
                 supplementaryView.contentConfiguration = UIHostingConfiguration {
                     TitleCollectionHeaderSwiftUIView(
                         title: displayItem.sectionHeader,
-                        description: displayItem.sectionDescription
+                        description: displayItem.sectionDescription,
+                        displaySeeAllButton: displayItem.section.type == .square,
+                        seeAllButtonDidTap: { [weak self] in
+                            self?.didTapSeeAllForSection.send(displayItem.section)
+                        }
                     )
                 }
             }

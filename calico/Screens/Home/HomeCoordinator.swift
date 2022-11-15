@@ -68,6 +68,12 @@ extension HomeCoordinator {
                 }
             })
             .store(in: &cancellables)
+        
+        viewController.didTapSeeAllForSection
+            .sink { [weak self] (collectionSection: CollectionSection) in
+                self?.openSeeAll(collectionSection.tag)
+            }
+            .store(in: &cancellables)
     }
     
     /// Opens cat details screen (the one with a "Share" button)
