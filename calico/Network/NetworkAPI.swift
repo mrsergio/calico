@@ -15,7 +15,7 @@ enum NetworkAPI {
     static let url = URL(string: "https://cataas.com/")!
 }
 
-enum RequestTask {
+enum RequestType {
     case plain
     case parameters(parameters: [String: Any], encoding: ParameterEncoding)
 }
@@ -40,14 +40,19 @@ extension NetworkAPI {
         HTTPMethod.get
     }
     
-    var request: RequestTask {
+    var request: RequestType {
         switch self {
             case .fetchByTag(let tag, let limit):
+                var params: [String: Any] = [
+                    "tags": tag
+                ]
+                
+                if limit > 0 {
+                    params["limit"] = limit
+                }
+                
                 return .parameters(
-                    parameters: [
-                        "tags": tag,
-                        "limit": limit
-                    ],
+                    parameters: params,
                     encoding: URLEncoding.default
                 )
                 
