@@ -43,6 +43,8 @@
 		49ECACEE292323CF00712195 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACED292323CF00712195 /* DataManager.swift */; };
 		49ECACF029232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACEF29232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift */; };
 		49ECACF229233BEE00712195 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF129233BEE00712195 /* UIViewController.swift */; };
+		49ECACF52923742000712195 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF42923742000712195 /* NoNetworkConnectionView.swift */; };
+		49ECACF72923777D00712195 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF62923777D00712195 /* NetworkMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		49ECACED292323CF00712195 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		49ECACEF29232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffabledDataSnapshotGeneratable.swift; sourceTree = "<group>"; };
 		49ECACF129233BEE00712195 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		49ECACF42923742000712195 /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
+		49ECACF62923777D00712195 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,7 @@
 				499CBD48292002390062C58B /* NetworkClient.swift */,
 				499CBD44292001FB0062C58B /* NetworkProtocol.swift */,
 				499CBD462920021F0062C58B /* NetworkAPI.swift */,
+				49ECACF62923777D00712195 /* NetworkMonitor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				499CBD35291FA7CD0062C58B /* Home */,
 				4953AF6529229392007039E2 /* SeeAll */,
 				499B4E4429224003001CCBA3 /* Details */,
+				49ECACF42923742000712195 /* NoNetworkConnectionView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 				49ECACEE292323CF00712195 /* DataManager.swift in Sources */,
 				499CBD30291FA7A00062C58B /* Reusable.swift in Sources */,
 				4953AF69292295D1007039E2 /* SeeAllViewModel.swift in Sources */,
+				49ECACF52923742000712195 /* NoNetworkConnectionView.swift in Sources */,
 				4953AF5C29225293007039E2 /* QuoteView.swift in Sources */,
 				499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */,
 				49ECACF029232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift in Sources */,
@@ -337,6 +344,7 @@
 				499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */,
 				499CBD2C291F788B0062C58B /* Coordinator.swift in Sources */,
 				4953AF6229226825007039E2 /* Quote.swift in Sources */,
+				49ECACF72923777D00712195 /* NetworkMonitor.swift in Sources */,
 				499CBD49292002390062C58B /* NetworkClient.swift in Sources */,
 				499B4E3F29220CBF001CCBA3 /* CollectionSection.swift in Sources */,
 				49ECACF229233BEE00712195 /* UIViewController.swift in Sources */,
