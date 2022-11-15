@@ -47,3 +47,16 @@ struct CollectionItem: Hashable {
         self.tag = tag
     }
 }
+
+extension CollectionItem {
+    
+    /// Creates array of N number of unique `CollectionItem`
+    static func createDummies(count: Int, sectionType: CollectionSectionType) -> [CollectionItem] {
+        guard count > 0 else {
+            return []
+        }
+        
+        return (0..<count)
+            .map({ _ in CollectionItem(relatedSectionType: sectionType, tag: "") })
+    }
+}
