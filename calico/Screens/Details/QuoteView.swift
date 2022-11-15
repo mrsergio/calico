@@ -14,13 +14,13 @@ struct QuoteView: View {
     var body: some View {
         Text("\"\(quote.title)\"")
             .font(Font.headline)
-            .foregroundColor(Color.black)
+            .foregroundColor(Color("TextColor"))
             .padding(8)
             .frame(maxWidth: .infinity, alignment: .leading)
         
         Text(quote.author)
             .font(Font.subheadline.italic())
-            .foregroundColor(Color.black)
+            .foregroundColor(Color("TextColor"))
             .padding(EdgeInsets(top: -10, leading: 0, bottom: 0, trailing: 16))
             .frame(maxWidth: .infinity, alignment: .trailing)
     }

@@ -74,6 +74,7 @@ struct DetailsView: View {
             }
             .padding(.bottom, 32)
         }
+        .background(Color("Background"))
         .frame(alignment: .top)
         .edgesIgnoringSafeArea(.top)
     }

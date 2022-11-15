@@ -79,7 +79,7 @@ extension SeeAllViewController {
     }
     
     private func setupCommonUI() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(named: "Background")
 
         navigationItem.title = "#\(viewModel.tag)"
     }
@@ -143,7 +143,7 @@ extension SeeAllViewController {
             // Create a section
             let section = NSCollectionLayoutSection(group: group)
             section.interGroupSpacing = interGroupSpacing
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
             
             return section
         }

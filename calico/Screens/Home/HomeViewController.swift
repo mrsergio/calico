@@ -67,7 +67,7 @@ extension HomeViewController {
     }
     
     private func setupCommonUI() {
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor(named: "Background")
         
         let titles: [String] = [
             "Your pocket cat finder 🔎",
@@ -186,7 +186,7 @@ extension HomeViewController {
                     section.orthogonalScrollingBehavior = .continuous
                     section.boundarySupplementaryItems = [sectionHeader]
                     section.interGroupSpacing = interGroupSpacing
-                    section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+                    section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
                     
                     return section
             }

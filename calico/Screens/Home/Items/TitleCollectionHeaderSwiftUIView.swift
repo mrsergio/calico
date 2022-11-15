@@ -21,14 +21,16 @@ struct TitleCollectionHeaderSwiftUIView: View {
             VStack {
                 Text(title)
                     .font(Font.title3.bold())
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color("TextColor"))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 // Hide description in case it is empty
                 if !description.isEmpty {
                     Text(description)
                         .font(Font.footnote)
-                        .foregroundColor(Color.black.opacity(0.75))
+                        .foregroundColor(
+                            Color("TextColor").opacity(0.75)
+                        )
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
