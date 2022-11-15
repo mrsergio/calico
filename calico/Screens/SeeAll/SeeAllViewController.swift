@@ -137,10 +137,12 @@ extension SeeAllViewController {
             let interGroupSpacing: CGFloat = 8.0
             
             // Setup single item size
+            let fractionalSideSize = UIDevice.current.userInterfaceIdiom == .pad ? 0.25 : 0.5
+            
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(0.5),
-                    heightDimension: .fractionalWidth(0.5)
+                    widthDimension: .fractionalWidth(fractionalSideSize),
+                    heightDimension: .fractionalWidth(fractionalSideSize)
                 )
             )
             item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4)
