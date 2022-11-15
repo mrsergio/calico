@@ -28,7 +28,7 @@ final class SeeAllViewController: UIViewController {
     // MARK: Actions
     
     let didSelectItem = PassthroughSubject<IndexPath, Never>()
-    let willDisappear = PassthroughSubject<Void, Never>()
+    let didDisappear = PassthroughSubject<Void, Never>()
     
     // MARK: Lifecycle
     
@@ -48,13 +48,10 @@ final class SeeAllViewController: UIViewController {
         viewModel.loadData()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
-        if isMovingFromParent {
-            // Triggers when "Back" button is tapped
-            willDisappear.send(())
-        }
+        didDisappear.send(())
     }
     
     /// Reload collectionView with (supposed to be new) data from viewModel

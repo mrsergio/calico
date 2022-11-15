@@ -103,7 +103,7 @@ extension HomeCoordinator {
             }
             .store(in: &cancellables)
         
-        seeAllCoordinator.willDisappear
+        seeAllCoordinator.didDisappear
             .sink { [weak self] _ in
                 // Remove the coordinator reference to release it from the memory
                 self?.seeAllCoordinator = nil

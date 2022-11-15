@@ -21,7 +21,7 @@ final class SeeAllCoordinator {
     private let viewModel: SeeAllViewModel
     
     let displayCollectionItem = PassthroughSubject<(CollectionItem, UIViewController), Never>()
-    let willDisappear = PassthroughSubject<Void, Never>()
+    let didDisappear = PassthroughSubject<Void, Never>()
     
     init(navigationController: UINavigationController?, tag: String) {
         self.navigationController = navigationController
@@ -65,10 +65,10 @@ extension SeeAllCoordinator {
             })
             .store(in: &cancellables)
         
-        viewController.willDisappear
+        viewController.didDisappear
             .sink { [weak self] _ in
                 // Using to deallocate current coordinator from the parent one
-                self?.willDisappear.send(())
+                self?.didDisappear.send(())
             }
             .store(in: &cancellables)
     }
