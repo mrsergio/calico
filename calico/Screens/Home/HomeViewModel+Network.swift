@@ -14,14 +14,11 @@ extension HomeViewModel {
     /// Load items for an each predefined data section
     func loadPredefinedData() {
         for (index, displayItem) in data.enumerated() {
-            loadCats(by: displayItem.section.tag, limit: 20) { [weak self] result in
+            DataManager.shared.loadCats(by: displayItem.section.tag) { [weak self] result in
                 switch result {
                     case .success(let cats):
-                        // Filter out images with no tags and gifs due to often timeouts :(
                         self?.data[index].items = cats
-                            .filter({ !$0.tags.isEmpty })
-                            .filter({ !$0.tags.contains("gif") })
-                            .shuffled()
+                            .prefix(10)
                             .compactMap { CollectionItem(
                                 from: $0,
                                 relatedSectionType: displayItem.section.type,
@@ -37,66 +34,11 @@ extension HomeViewModel {
         }
     }
     
-    /// Load array of cat models from API
-    /// - Parameters:
-    ///   - tag: items with particular tag to fetch
-    ///   - limit: limit of number of items to fetch
-    ///   - callback: success or failure result to handle
-    private func loadCats(
-        by tag: String,
-        limit: Int,
-        callback: @escaping ((Result<[CatModel], AFError>) -> Void)
-    ) {
-        network
-            .fetchByTag(tag, limit: limit)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                    case .finished:
-                        break
-                        
-                    case .failure(let error):
-                        callback(.failure(error))
-                }
-                
-            } receiveValue: { (cats: [CatModel]) in
-                callback(.success(cats))
-            }
-            .store(in: &cancellables)
-    }
-    
-    /// Load array of 5 random tags from API
-    /// - Parameter callback: success of failure result to handle
-    func loadRandomTags(callback: @escaping ((Result<[String], AFError>) -> Void)) {
-        network
-            .fetchAvailableTags()
-            .sink { completion in
-                switch completion {
-                    case .finished:
-                        break
-                        
-                    case .failure(let error):
-                        callback(.failure(error))
-                }
-                
-            } receiveValue: { (tags: [String]) in
-                let randomTags = tags
-                    .filter({ !$0.isEmpty })
-                    .filter({ $0.count < 10 })
-                    .shuffled()
-                    .prefix(5)
-                
-                callback(.success(Array(randomTags)))
-            }
-            .store(in: &cancellables)
-    }
-    
-    
     /// Fetch tags, get random 5 of them and create a section using those tags for user to select later
     func loadMoodSection() {
         // Predefine mood section first
         let moodSection = CollectionSection(
-            type: .sliderWithOverlay,
+            type: .wideWithOverlay,
             header: "Cats by Mood",
             description: ""
         )
@@ -150,8 +92,11 @@ extension HomeViewModel {
                             strongSelf.dataDidUpdate.send(())
                             
                         }, receiveValue: { (cats: [CatModel]) in
-                            // Get the cat model
-                            guard let catModel = cats.first else {
+                            // Get the cat model and throw out the one with 'gif' tag
+                            guard
+                                let catModel = cats.first,
+                                !catModel.tags.contains("gif")
+                            else {
                                 return
                             }
                             
