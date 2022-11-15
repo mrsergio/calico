@@ -10,11 +10,10 @@ import UIKit
 import Kingfisher
 import Combine
 
-final class SeeAllViewController: UIViewController {
+final class SeeAllViewController: NetworkReflectableUIViewController {
     
     // MARK: Variables
     
-    private var cancellables = Set<AnyCancellable>()
     private var viewModel: SeeAllViewModel
     
     typealias DataSource = UICollectionViewDiffableDataSource<CollectionSection, CollectionItem>
@@ -68,6 +67,7 @@ extension SeeAllViewController {
     private func commonInit() {
         setupCommonUI()
         updateDataSource()
+        setupNoNetworkView()
         setupCollectionView()
         
         viewModel.dataDidUpdate
@@ -76,6 +76,15 @@ extension SeeAllViewController {
                 self?.updateDataSource()
             }
             .store(in: &cancellables)
+        
+        followNetworkStatusUpdates(
+            onConnected: { [weak self] in
+                // Reload data from scratch again
+                self?.viewModel.loadData()
+            },
+            onNotConnected: { },
+            viewToDisplayWhenConnected: collectionView
+        )
     }
     
     private func setupCommonUI() {
@@ -102,6 +111,10 @@ extension SeeAllViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        if !NetworkMonitor.shared.isConnected {
+            collectionView.isHidden = true
+        }
     }
 }
 
@@ -169,6 +182,7 @@ extension SeeAllViewController {
 // MARK: - Helpers
 
 extension SeeAllViewController {
+    
     func prefetchAllImages() {
         // Prefetch all the previews
         let previewURLs = viewModel.data.compactMap({ $0.itemsPreviewURLs }).flatMap({ $0 })

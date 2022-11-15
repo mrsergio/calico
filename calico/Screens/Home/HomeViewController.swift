@@ -11,11 +11,10 @@ import SwiftUI
 import Combine
 import Kingfisher
 
-final class HomeViewController: UIViewController {
+final class HomeViewController: NetworkReflectableUIViewController {
     
     // MARK: Variables
     
-    private var cancellables = Set<AnyCancellable>()
     private var viewModel: HomeViewModel
     
     typealias DataSource = UICollectionViewDiffableDataSource<CollectionSection, CollectionItem>
@@ -56,6 +55,7 @@ extension HomeViewController {
     private func commonInit() {
         setupCommonUI()
         updateDataSource()
+        setupNoNetworkView()
         setupCollectionView()
         
         viewModel.dataDidUpdate
@@ -64,6 +64,15 @@ extension HomeViewController {
                 self?.updateDataSource()
             }
             .store(in: &cancellables)
+        
+        followNetworkStatusUpdates(
+            onConnected: { [weak self] in
+                // Reload data from scratch again
+                self?.viewModel.loadData()
+            },
+            onNotConnected: { },
+            viewToDisplayWhenConnected: collectionView
+        )
     }
     
     private func setupCommonUI() {
@@ -97,6 +106,10 @@ extension HomeViewController {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        
+        if !NetworkMonitor.shared.isConnected {
+            collectionView.isHidden = true
+        }
     }
 }
 

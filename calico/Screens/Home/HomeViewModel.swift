@@ -15,13 +15,14 @@ class HomeViewModel: DiffabledDataSnapshotGeneratable {
     internal let network = NetworkClient()
     
     let dataDidUpdate = PassthroughSubject<Void, Never>()
+    
     internal var data: [DisplayItem] = []
     
     init() {
-        setupData()
+        loadData()
     }
     
-    private func setupData() {
+    func loadData() {
         // Predefine display sections
         data = [
             DisplayItem(

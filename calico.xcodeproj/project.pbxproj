@@ -45,6 +45,7 @@
 		49ECACF229233BEE00712195 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF129233BEE00712195 /* UIViewController.swift */; };
 		49ECACF52923742000712195 /* NoNetworkConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF42923742000712195 /* NoNetworkConnectionView.swift */; };
 		49ECACF72923777D00712195 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF62923777D00712195 /* NetworkMonitor.swift */; };
+		49ECACFB292381A100712195 /* NetworkReflectableUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACFA292381A100712195 /* NetworkReflectableUIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		49ECACF129233BEE00712195 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		49ECACF42923742000712195 /* NoNetworkConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkConnectionView.swift; sourceTree = "<group>"; };
 		49ECACF62923777D00712195 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		49ECACFA292381A100712195 /* NetworkReflectableUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReflectableUIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,7 +230,7 @@
 				499CBD35291FA7CD0062C58B /* Home */,
 				4953AF6529229392007039E2 /* SeeAll */,
 				499B4E4429224003001CCBA3 /* Details */,
-				49ECACF42923742000712195 /* NoNetworkConnectionView.swift */,
+				49ECACFC292381B000712195 /* CommonUI */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -239,6 +241,15 @@
 				49ECACED292323CF00712195 /* DataManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		49ECACFC292381B000712195 /* CommonUI */ = {
+			isa = PBXGroup;
+			children = (
+				49ECACF42923742000712195 /* NoNetworkConnectionView.swift */,
+				49ECACFA292381A100712195 /* NetworkReflectableUIViewController.swift */,
+			);
+			path = CommonUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,6 +348,7 @@
 				499CBD39291FEEA10062C58B /* HomeCoordinator.swift in Sources */,
 				499B4E43292235D4001CCBA3 /* HomeViewModel+Network.swift in Sources */,
 				499CBD3B291FEF0D0062C58B /* HomeViewModel.swift in Sources */,
+				49ECACFB292381A100712195 /* NetworkReflectableUIViewController.swift in Sources */,
 				499CBD29291F777E0062C58B /* AppCoordinator.swift in Sources */,
 				4953AF6B292295D7007039E2 /* SeeAllViewController.swift in Sources */,
 				499CBD32291FA7B10062C58B /* UICollectionView.swift in Sources */,
@@ -495,11 +507,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = calico/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Calico;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need it to let you save your the cats you like";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,11 +537,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = calico/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Calico;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We need it to let you save your the cats you like";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
