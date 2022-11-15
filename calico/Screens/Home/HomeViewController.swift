@@ -28,15 +28,9 @@ final class HomeViewController: UIViewController {
     
     // MARK: Actions
     
-    let didSelectItem = PassthroughSubject<CollectionItem, Never>()
+    let didSelectItem = PassthroughSubject<IndexPath, Never>()
 
     // MARK: Lifecycle
-    
-    override func viewDidLoad() {
-        viewModel = HomeViewModel()
-        super.viewDidLoad()
-        commonInit()
-    }
     
     required init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -110,8 +104,7 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let collectionItem = viewModel.data[indexPath.section].items[indexPath.item]
-        didSelectItem.send(collectionItem)
+        didSelectItem.send(indexPath)
     }
 }
 

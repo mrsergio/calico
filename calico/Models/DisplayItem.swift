@@ -27,3 +27,14 @@ struct DisplayItem {
         section.description
     }
 }
+
+extension DisplayItem {
+    
+    var itemsPreviewURLs: [URL] {
+        return items.compactMap({ $0.imageURL })
+    }
+    
+    var itemsOriginalURLs: [URL] {
+        return items.compactMap({ $0.originalImageURL })
+    }
+}

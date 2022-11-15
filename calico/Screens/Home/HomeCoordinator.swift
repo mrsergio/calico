@@ -18,6 +18,8 @@ final class HomeCoordinator {
     private let viewController: HomeViewController
     private let viewModel: HomeViewModel
     
+    private var seeAllCoordinator: SeeAllCoordinator?
+    
     init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
         
@@ -43,38 +45,69 @@ extension HomeCoordinator {
     
     private func setupActionHandlers() {
         viewController.didSelectItem
-            .sink(receiveValue: { [weak self] (collectionItem: CollectionItem) in
+            .sink(receiveValue: { [weak self] (indexPath: IndexPath) in
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                // Fetch associated collectionItem from the viewModel
+                let collectionItem = strongSelf.viewModel
+                    .data[indexPath.section]
+                    .items[indexPath.item]
+                
+                // Perform an action depending on the section type
                 switch (collectionItem.relatedSectionType, collectionItem.tag) {
-                    case (.sliderWithOverlay, let tag):
-                        self?.openSeeAll(tag)
+                    case (.wideWithOverlay, let tag):
+                        strongSelf.openSeeAll(tag)
                         
                     default:
-                        self?.openItemDetails(collectionItem)
+                        strongSelf.openItemDetails(
+                            collectionItem,
+                            from: strongSelf.viewController
+                        )
                 }
             })
             .store(in: &cancellables)
     }
     
     /// Opens cat details screen (the one with a "Share" button)
-    func openItemDetails(_ item: CollectionItem) {
-        let itemDetailsView = DetailsView(url: item.originalImageURL, quote: Quote.randomQuote) { [weak self] in
+    func openItemDetails(_ item: CollectionItem, from vc: UIViewController) {
+        let itemDetailsView = DetailsView(url: item.originalImageURL, quote: Quote.randomQuote) {
             /* "Share" button handler */
-            self?.viewController.shareItem(item)
+            vc.shareItem(item)
         }
         
         let detailsViewController = UIHostingController(rootView: itemDetailsView)
-        detailsViewController.popoverPresentationController?.sourceView = viewController.collectionView
+        detailsViewController.popoverPresentationController?.sourceView = vc.view
         detailsViewController.modalPresentationStyle = UIDevice.current.userInterfaceIdiom == .pad ? .pageSheet : .formSheet
         
-        viewController.present(detailsViewController, animated: true)
+        vc.present(detailsViewController, animated: true)
     }
     
     /// Opens 'See All' view controller to see all the cats for a particular tag
-    func openSeeAll(_ tag: String) {
+    private func openSeeAll(_ tag: String) {
         let seeAllCoordinator = SeeAllCoordinator(
             navigationController: navigationController,
             tag: tag
         )
+        
+        seeAllCoordinator.displayCollectionItem
+            .sink { [weak self] (collectionItem: CollectionItem, viewController: UIViewController) in
+                self?.openItemDetails(collectionItem, from: viewController)
+            }
+            .store(in: &cancellables)
+        
+        seeAllCoordinator.willDisappear
+            .sink { [weak self] _ in
+                // Remove the coordinator reference to release it from the memory
+                self?.seeAllCoordinator = nil
+            }
+            .store(in: &cancellables)
+        
+        // Keep coordinator reference while user is there
+        self.seeAllCoordinator = seeAllCoordinator
+        
+        // Display the coordinator
         seeAllCoordinator.start()
     }
 }

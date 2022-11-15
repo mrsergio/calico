@@ -100,7 +100,6 @@ final class ImageCollectionViewCell: UICollectionViewCell {
             placeholder: placeholderImage,
             options: [
                 .onlyLoadFirstFrame, // no need to load the whole gif
-                .alsoPrefetchToMemory, // prefetch to memory cache (as well as to the disk)
                 .retryStrategy(
                     DelayRetryStrategy(
                         maxRetryCount: 3,
