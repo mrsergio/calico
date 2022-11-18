@@ -12,7 +12,7 @@ struct DetailsView: View {
     
     let url: URL?
     let quote: Quote?
-    var shareButtonDidTap: (() -> ())
+    var shareButtonDidTap: (() -> ())?
     
     var body: some View {
         VStack {
@@ -63,7 +63,7 @@ struct DetailsView: View {
                 Spacer()
 
                 Button("Share") {
-                    shareButtonDidTap()
+                    shareButtonDidTap?()
                 }
                 .buttonStyle(GradientButtonStyle())
                 .font(.title2)

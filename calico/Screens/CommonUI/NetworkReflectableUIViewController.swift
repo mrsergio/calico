@@ -33,7 +33,9 @@ class NetworkReflectableUIViewController: UIViewController {
         onNotConnected: @escaping (() -> Void),
         viewToDisplayWhenConnected: UIView
     ) {
-        NetworkMonitor.shared.statusDidUpdate
+        NetworkMonitor.shared
+            .$status
+            .dropFirst() // ignore initial value assignment
             .receive(on: DispatchQueue.main)
             .sink { (status: NetworkStatus) in
                 switch status {

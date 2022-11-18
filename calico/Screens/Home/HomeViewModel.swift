@@ -9,14 +9,12 @@ import Foundation
 import UIKit
 import Combine
 
-class HomeViewModel: DiffabledDataSnapshotGeneratable {
+final class HomeViewModel: ObservableObject, DiffabledDataSnapshotGeneratable {
     
     internal var cancellables = Set<AnyCancellable>()
     internal let network = NetworkClient()
     
-    let dataDidUpdate = PassthroughSubject<Void, Never>()
-    
-    internal var data: [DisplayItem] = []
+    @Published var data: [DisplayItem] = []
     
     init() {
         loadData()

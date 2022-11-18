@@ -42,8 +42,8 @@ final class HomeViewController: NetworkReflectableUIViewController {
         fatalError("Storyboards are not supported")
     }
     
-    /// Reload collectionView with (supposed to be new) data from viewModel
-    func updateDataSource() {
+    /// Reload collectionView with a data from viewModel
+    func updateDataSnapshot() {
         dataSource.apply(viewModel.dataSnapshot)
     }
 }
@@ -54,14 +54,15 @@ extension HomeViewController {
     
     private func commonInit() {
         setupCommonUI()
-        updateDataSource()
+        updateDataSnapshot()
         setupNoNetworkView()
         setupCollectionView()
         
-        viewModel.dataDidUpdate
+        viewModel
+            .$data
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.updateDataSource()
+                self?.updateDataSnapshot()
             }
             .store(in: &cancellables)
         
