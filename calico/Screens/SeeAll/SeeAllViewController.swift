@@ -53,8 +53,8 @@ final class SeeAllViewController: NetworkReflectableUIViewController {
         didDisappear.send(())
     }
     
-    /// Reload collectionView with (supposed to be new) data from viewModel
-    func updateDataSource() {
+    /// Reload collectionView with a data from viewModel
+    func updateDataSnapshot() {
         dataSource.apply(viewModel.dataSnapshot)
         prefetchAllImages()
     }
@@ -66,14 +66,15 @@ extension SeeAllViewController {
     
     private func commonInit() {
         setupCommonUI()
-        updateDataSource()
+        updateDataSnapshot()
         setupNoNetworkView()
         setupCollectionView()
         
-        viewModel.dataDidUpdate
+        viewModel
+            .$data
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                self?.updateDataSource()
+                self?.updateDataSnapshot()
             }
             .store(in: &cancellables)
         

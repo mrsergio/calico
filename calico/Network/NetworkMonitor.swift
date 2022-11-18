@@ -23,18 +23,12 @@ enum NetworkStatus {
     }
 }
 
-final class NetworkMonitor: NSObject {
+final class NetworkMonitor: NSObject, ObservableObject {
     
     public static let shared = NetworkMonitor()
     
     private let monitor = NWPathMonitor()
-    private var status: NetworkStatus = .connected {
-        didSet {
-            statusDidUpdate.send(status)
-        }
-    }
-    
-    let statusDidUpdate = PassthroughSubject<NetworkStatus, Never>()
+    @Published var status: NetworkStatus = .connected
     
     public var isConnected: Bool {
         return status == .connected

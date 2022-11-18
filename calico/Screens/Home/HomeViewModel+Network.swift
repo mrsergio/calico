@@ -25,8 +25,6 @@ extension HomeViewModel {
                                 tag: $0.tags.first ?? displayItem.section.tag
                             )}
                         
-                        self?.dataDidUpdate.send(())
-                        
                     case .failure(let failure):
                         print("Error happened: \(failure)")
                 }
@@ -54,7 +52,7 @@ extension HomeViewModel {
                 // There are no mood section found, create a new one
                 let catsByMoodDisplayItem = DisplayItem(
                     section: moodSection,
-                    items: [item] // passed item used as first section item
+                    items: [item] // passed item used as a first item in this just created section
                 )
                 
                 // Add mood section to the data
@@ -87,9 +85,8 @@ extension HomeViewModel {
                 // Fetch 1 cat model for an each tag
                 for tag in randomTags {
                     strongSelf.network.fetchByTag(tag, limit: 1)
-                        .sink(receiveCompletion: { completion in
-                            // Let subscribers know they need to update UI
-                            strongSelf.dataDidUpdate.send(())
+                        .sink(receiveCompletion: { _ in
+                            // Do nothing
                             
                         }, receiveValue: { (cats: [CatModel]) in
                             // Get the cat model and throw out the one with 'gif' tag
@@ -109,8 +106,6 @@ extension HomeViewModel {
                             
                             // And append to the mood section
                             appendToMoodSection(itemModel)
-                            
-                            // UI update will be triggered from the completion closure above ^^^
                         })
                         .store(in: &strongSelf.cancellables)
                 }

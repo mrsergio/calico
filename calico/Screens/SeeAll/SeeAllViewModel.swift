@@ -8,13 +8,12 @@
 import Foundation
 import Combine
 
-class SeeAllViewModel: DiffabledDataSnapshotGeneratable {
+final class SeeAllViewModel: ObservableObject, DiffabledDataSnapshotGeneratable {
     
-    internal var cancellables = Set<AnyCancellable>()
     internal let network = NetworkClient()
     
-    let dataDidUpdate = PassthroughSubject<Void, Never>()
-    internal var data: [DisplayItem] = []
+    @Published var data: [DisplayItem] = []
+    
     private(set) var tag: String
     private var alreadyLoadedData: Bool = false
     
@@ -79,8 +78,6 @@ extension SeeAllViewModel {
                             relatedSectionType: .square,
                             tag: self?.tag ?? ""
                         )}
-                    
-                    self?.dataDidUpdate.send(())
                     
                 case .failure(let failure):
                     print("Error happened: \(failure)")
