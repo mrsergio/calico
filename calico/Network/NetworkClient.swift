@@ -16,12 +16,12 @@ struct NetworkClient: NetworkProtocol {
         qos: .userInitiated
     )
     
-    func fetchByTag(_ tag: String, limit: Int) -> AnyPublisher<[CatModel], AFError> {
-        return performRequest([CatModel].self, target: .fetchByTag(tag, limit: limit))
+    func fetchByTag(_ tag: String, limit: Int) async throws -> [CatModel] {
+        return try await performRequest([CatModel].self, target: .fetchByTag(tag, limit: limit))
     }
     
-    func fetchAvailableTags() -> AnyPublisher<[String], AFError> {
-        return performRequest([String].self, target: .fetchAvailableTags)
+    func fetchAvailableTags() async throws -> [String] {
+        return try await performRequest([String].self, target: .fetchAvailableTags)
     }
 }
 
@@ -32,14 +32,13 @@ extension NetworkClient {
     ///   - T: type of data we should decode to
     ///   - target: API call from `NetworkAPI`
     /// - Returns: decoded data or error
-    private func performRequest<T: Decodable>(_: T.Type, target: NetworkAPI) -> AnyPublisher<T, AFError> {
+    private func performRequest<T: Decodable>(_: T.Type, target: NetworkAPI) async throws -> T {
         let dataRequest: DataRequest = createDataRequest(with: target)
         
-        return dataRequest
+        return try await dataRequest
             .validate()
-            .publishDecodable(type: T.self, queue: networkDispatchQueue)
-            .value()
-            .eraseToAnyPublisher()
+            .serializingDecodable(T.self)
+            .value
     }
     
     /// Creates data request used by Alamofire for a further API call execution

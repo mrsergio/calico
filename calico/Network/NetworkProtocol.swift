@@ -10,6 +10,6 @@ import Alamofire
 import Combine
 
 protocol NetworkProtocol {
-    func fetchByTag(_ tag: String, limit: Int) -> AnyPublisher<[CatModel], AFError>
-    func fetchAvailableTags() -> AnyPublisher<[String], AFError>
+    func fetchByTag(_ tag: String, limit: Int) async throws -> [CatModel]
+    func fetchAvailableTags() async throws -> [String]
 }
