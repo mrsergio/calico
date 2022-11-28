@@ -171,11 +171,11 @@
 			children = (
 				499CBD14291F6B040062C58B /* AppDelegate.swift */,
 				499CBD16291F6B040062C58B /* SceneDelegate.swift */,
+				49ECACF62923777D00712195 /* NetworkMonitor.swift */,
 				499CBD28291F777E0062C58B /* AppCoordinator.swift */,
 				49ECACEC2922ACDA00712195 /* Scenes */,
 				499B4E332920E5C5001CCBA3 /* Models */,
 				49ECACF329234BA300712195 /* Data */,
-				499CBD43292001EC0062C58B /* Network */,
 				499CBD2E291F79F20062C58B /* Extensions */,
 				499CBD2A291F787D0062C58B /* Protocols */,
 				49445E842934B2AA00BF4119 /* Packages */,
@@ -225,14 +225,6 @@
 				499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */,
 			);
 			path = Items;
-			sourceTree = "<group>";
-		};
-		499CBD43292001EC0062C58B /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				49ECACF62923777D00712195 /* NetworkMonitor.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		49ECACEC2922ACDA00712195 /* Scenes */ = {
