@@ -12,7 +12,7 @@ import Combine
 final class HomeViewModel: ObservableObject, DiffabledDataSnapshotGeneratable {
     
     internal var cancellables = Set<AnyCancellable>()
-    internal let network = NetworkClient()
+    internal var fetcher = Fetcher.shared
     
     @Published var data: [DisplayItem] = []
     
@@ -50,10 +50,10 @@ final class HomeViewModel: ObservableObject, DiffabledDataSnapshotGeneratable {
             )
         ]
         
-        // Load predefined sections with a data
-        loadPredefinedData()
+        // Load predefined sections
+        loadPredefinedSections()
         
-        // Load mood section (based on fetched random tags)
+        // Load mood section (based on random tags)
         loadMoodSection()
     }
 }
