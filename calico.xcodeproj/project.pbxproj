@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		49445E822934771B00BF4119 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49445E812934771B00BF4119 /* Fetcher.swift */; };
+		49445E872934C03100BF4119 /* NetworkClient in Frameworks */ = {isa = PBXBuildFile; productRef = 49445E862934C03100BF4119 /* NetworkClient */; };
 		4953AF5C29225293007039E2 /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953AF5B29225293007039E2 /* QuoteView.swift */; };
 		4953AF6029225EA5007039E2 /* PawsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953AF5F29225EA5007039E2 /* PawsView.swift */; };
 		4953AF6229226825007039E2 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953AF6129226825007039E2 /* Quote.swift */; };
@@ -37,10 +38,6 @@
 		499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD3C291FEF980062C58B /* HomeViewController.swift */; };
 		499CBD40291FEFF60062C58B /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD3F291FEFF60062C58B /* ImageCollectionViewCell.swift */; };
 		499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */; };
-		499CBD45292001FB0062C58B /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD44292001FB0062C58B /* NetworkProtocol.swift */; };
-		499CBD472920021F0062C58B /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD462920021F0062C58B /* NetworkAPI.swift */; };
-		499CBD49292002390062C58B /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD48292002390062C58B /* NetworkClient.swift */; };
-		499CBD4C2920B6970062C58B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 499CBD4B2920B6970062C58B /* Alamofire */; };
 		49ECACEE292323CF00712195 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACED292323CF00712195 /* Database.swift */; };
 		49ECACF029232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACEF29232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift */; };
 		49ECACF229233BEE00712195 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF129233BEE00712195 /* UIViewController.swift */; };
@@ -51,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		49445E812934771B00BF4119 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
+		49445E832934B24800BF4119 /* CalicoNetwork */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CalicoNetwork; sourceTree = "<group>"; };
 		4953AF5B29225293007039E2 /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		4953AF5F29225EA5007039E2 /* PawsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawsView.swift; sourceTree = "<group>"; };
 		4953AF6129226825007039E2 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
@@ -81,9 +79,6 @@
 		499CBD3C291FEF980062C58B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		499CBD3F291FEFF60062C58B /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionHeaderSwiftUIView.swift; sourceTree = "<group>"; };
-		499CBD44292001FB0062C58B /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
-		499CBD462920021F0062C58B /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
-		499CBD48292002390062C58B /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		49ECACED292323CF00712195 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		49ECACEF29232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffabledDataSnapshotGeneratable.swift; sourceTree = "<group>"; };
 		49ECACF129233BEE00712195 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -97,14 +92,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49445E872934C03100BF4119 /* NetworkClient in Frameworks */,
 				499B4E38292127DE001CCBA3 /* Kingfisher in Frameworks */,
-				499CBD4C2920B6970062C58B /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49445E842934B2AA00BF4119 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				49445E832934B24800BF4119 /* CalicoNetwork */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		49445E852934C03100BF4119 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4953AF6529229392007039E2 /* SeeAll */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +154,7 @@
 			children = (
 				499CBD13291F6B040062C58B /* calico */,
 				499CBD12291F6B040062C58B /* Products */,
+				49445E852934C03100BF4119 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,6 +178,7 @@
 				499CBD43292001EC0062C58B /* Network */,
 				499CBD2E291F79F20062C58B /* Extensions */,
 				499CBD2A291F787D0062C58B /* Protocols */,
+				49445E842934B2AA00BF4119 /* Packages */,
 				499CBD1D291F6B050062C58B /* Assets.xcassets */,
 				499CBD1F291F6B050062C58B /* LaunchScreen.storyboard */,
 				499CBD22291F6B050062C58B /* Info.plist */,
@@ -218,9 +230,6 @@
 		499CBD43292001EC0062C58B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				499CBD48292002390062C58B /* NetworkClient.swift */,
-				499CBD44292001FB0062C58B /* NetworkProtocol.swift */,
-				499CBD462920021F0062C58B /* NetworkAPI.swift */,
 				49ECACF62923777D00712195 /* NetworkMonitor.swift */,
 			);
 			path = Network;
@@ -272,8 +281,8 @@
 			);
 			name = calico;
 			packageProductDependencies = (
-				499CBD4B2920B6970062C58B /* Alamofire */,
 				499B4E37292127DE001CCBA3 /* Kingfisher */,
+				49445E862934C03100BF4119 /* NetworkClient */,
 			);
 			productName = calico;
 			productReference = 499CBD11291F6B040062C58B /* calico.app */;
@@ -304,7 +313,6 @@
 			);
 			mainGroup = 499CBD08291F6B040062C58B;
 			packageReferences = (
-				499CBD4A2920B6970062C58B /* XCRemoteSwiftPackageReference "Alamofire" */,
 				499B4E36292127DE001CCBA3 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 499CBD12291F6B040062C58B /* Products */;
@@ -346,7 +354,6 @@
 				4953AF67292295CA007039E2 /* SeeAllCoordinator.swift in Sources */,
 				499CBD34291FA7C00062C58B /* UICollectionReusableView.swift in Sources */,
 				499B4E4129220CD0001CCBA3 /* DisplayItem.swift in Sources */,
-				499CBD472920021F0062C58B /* NetworkAPI.swift in Sources */,
 				49445E822934771B00BF4119 /* Fetcher.swift in Sources */,
 				4953AF6029225EA5007039E2 /* PawsView.swift in Sources */,
 				499CBD39291FEEA10062C58B /* HomeCoordinator.swift in Sources */,
@@ -361,12 +368,10 @@
 				499CBD2C291F788B0062C58B /* Coordinator.swift in Sources */,
 				4953AF6229226825007039E2 /* Quote.swift in Sources */,
 				49ECACF72923777D00712195 /* NetworkMonitor.swift in Sources */,
-				499CBD49292002390062C58B /* NetworkClient.swift in Sources */,
 				499B4E3F29220CBF001CCBA3 /* CollectionSection.swift in Sources */,
 				49ECACF229233BEE00712195 /* UIViewController.swift in Sources */,
 				499B4E46292242BD001CCBA3 /* DetailsView.swift in Sources */,
 				499B4E3D29220CAB001CCBA3 /* CollectionItem.swift in Sources */,
-				499CBD45292001FB0062C58B /* NetworkProtocol.swift in Sources */,
 				499CBD15291F6B040062C58B /* AppDelegate.swift in Sources */,
 				499CBD17291F6B040062C58B /* SceneDelegate.swift in Sources */,
 			);
@@ -592,26 +597,17 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		499CBD4A2920B6970062C58B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		49445E862934C03100BF4119 /* NetworkClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkClient;
+		};
 		499B4E37292127DE001CCBA3 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 499B4E36292127DE001CCBA3 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		499CBD4B2920B6970062C58B /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 499CBD4A2920B6970062C58B /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

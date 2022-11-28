@@ -6,10 +6,9 @@
 //
 
 import Foundation
-import Alamofire
 import Combine
 
-protocol NetworkProtocol {
-    func fetchByTag(_ tag: String, limit: Int) async throws -> [CatModel]
+public protocol NetworkProtocol {
+    func fetchByTag<T: Decodable>(_: T.Type, tag: String, limit: Int) async throws -> T
     func fetchAvailableTags() async throws -> [String]
 }

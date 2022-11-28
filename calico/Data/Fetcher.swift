@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkClient
 
 /// Fetch layer used to request the data from database or network
 final class Fetcher {
@@ -30,7 +31,7 @@ extension Fetcher {
     /// - Returns: cat models array associated with given tag
     func fetchCatsFromAPI(by tag: String, limit: Int = 0) async throws -> [CatModel] {
         let cats: [CatModel] = try await network
-            .fetchByTag(tag, limit: limit)
+            .fetchByTag([CatModel].self, tag: tag, limit: limit)
             .filter({ !$0.tags.isEmpty }) // filter out cat models with no tags
             .filter({ !$0.tags.contains("gif") }) // filter out cat models with 'gif' tag due to often loading timeouts
         

@@ -9,23 +9,20 @@ import Foundation
 import Alamofire
 import Combine
 
-struct NetworkClient: NetworkProtocol {
-    /// Dispatch Queue used by network to
-    private let networkDispatchQueue = DispatchQueue(
-        label: "calico.network.background",
-        qos: .userInitiated
-    )
+public struct NetworkClient: NetworkProtocol {
     
-    func fetchByTag(_ tag: String, limit: Int) async throws -> [CatModel] {
-        return try await performRequest([CatModel].self, target: .fetchByTag(tag, limit: limit))
+    public init() { }
+
+    public func fetchByTag<T: Decodable>(_: T.Type, tag: String, limit: Int) async throws -> T {
+        return try await performRequest(T.self, target: .fetchByTag(tag, limit: limit))
     }
     
-    func fetchAvailableTags() async throws -> [String] {
+    public func fetchAvailableTags() async throws -> [String] {
         return try await performRequest([String].self, target: .fetchAvailableTags)
     }
 }
 
-extension NetworkClient {
+private extension NetworkClient {
     
     /// Perform API call
     /// - Parameters:
