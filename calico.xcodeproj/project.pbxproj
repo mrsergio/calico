@@ -161,7 +161,7 @@
 				499CBD14291F6B040062C58B /* AppDelegate.swift */,
 				499CBD16291F6B040062C58B /* SceneDelegate.swift */,
 				499CBD28291F777E0062C58B /* AppCoordinator.swift */,
-				49ECACEC2922ACDA00712195 /* Screens */,
+				49ECACEC2922ACDA00712195 /* Scenes */,
 				499B4E332920E5C5001CCBA3 /* Models */,
 				49ECACF329234BA300712195 /* Data */,
 				499CBD43292001EC0062C58B /* Network */,
@@ -226,7 +226,7 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		49ECACEC2922ACDA00712195 /* Screens */ = {
+		49ECACEC2922ACDA00712195 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
 				499CBD35291FA7CD0062C58B /* Home */,
@@ -234,7 +234,7 @@
 				499B4E4429224003001CCBA3 /* Details */,
 				49ECACFC292381B000712195 /* CommonUI */,
 			);
-			path = Screens;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		49ECACF329234BA300712195 /* Data */ = {
