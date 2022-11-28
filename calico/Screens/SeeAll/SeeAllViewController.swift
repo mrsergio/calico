@@ -10,11 +10,12 @@ import UIKit
 import Kingfisher
 import Combine
 
-final class SeeAllViewController: NetworkReflectableUIViewController {
+final class SeeAllViewController: UIViewController {
     
     // MARK: Variables
     
     private var viewModel: SeeAllViewModel
+    private var cancellables = Set<AnyCancellable>()
     
     typealias DataSource = UICollectionViewDiffableDataSource<CollectionSection, CollectionItem>
     private lazy var dataSource: DataSource = createDataSource()
@@ -40,13 +41,7 @@ final class SeeAllViewController: NetworkReflectableUIViewController {
     required init?(coder: NSCoder) {
         fatalError("Storyboards are not supported")
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        viewModel.loadData()
-    }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -67,7 +62,6 @@ extension SeeAllViewController {
     private func commonInit() {
         setupCommonUI()
         updateDataSnapshot()
-        setupNoNetworkView()
         setupCollectionView()
         
         viewModel
@@ -77,15 +71,6 @@ extension SeeAllViewController {
                 self?.updateDataSnapshot()
             }
             .store(in: &cancellables)
-        
-        followNetworkStatusUpdates(
-            onConnected: { [weak self] in
-                // Reload data from scratch again
-                self?.viewModel.loadData()
-            },
-            onNotConnected: { },
-            viewToDisplayWhenConnected: collectionView
-        )
     }
     
     private func setupCommonUI() {
