@@ -8,11 +8,11 @@
 import Foundation
 import Alamofire
 
-enum NetworkAPI {
+public enum NetworkAPI {
     case fetchByTag(_ tag: String, limit: Int)
     case fetchAvailableTags
     
-    static let url = URL(string: "https://cataas.com/")!
+    public static let url = URL(string: "https://cataas.com/")!
 }
 
 enum RequestType {
