@@ -37,6 +37,7 @@ extension HomeCoordinator: Coordinator {
     }
     
     func start() {
+        viewModel.loadData()
         navigationController?.setViewControllers([viewController], animated: false)
     }
 }
