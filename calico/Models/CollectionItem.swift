@@ -12,6 +12,7 @@ struct CollectionItem: Hashable {
     var id: String
     var imageURL: URL?
     var originalImageURL: URL?
+    var isDummy: Bool = false
     
     var relatedSectionType: CollectionSectionType
     var tag: String
@@ -39,12 +40,13 @@ struct CollectionItem: Hashable {
         }
     }
     
-    init(id: String = UUID().uuidString, imageURLString: URL? = nil, originalImageURL: URL? = nil, relatedSectionType: CollectionSectionType, tag: String) {
+    init(id: String = UUID().uuidString, imageURLString: URL? = nil, originalImageURL: URL? = nil, relatedSectionType: CollectionSectionType, tag: String, isDummy: Bool = false) {
         self.id = id
         self.imageURL = imageURLString
         self.originalImageURL = originalImageURL
         self.relatedSectionType = relatedSectionType
         self.tag = tag
+        self.isDummy = isDummy
     }
 }
 
@@ -57,6 +59,10 @@ extension CollectionItem {
         }
         
         return (0..<count)
-            .map({ _ in CollectionItem(relatedSectionType: sectionType, tag: "") })
+            .map({ _ in CollectionItem(
+                relatedSectionType: sectionType,
+                tag: "",
+                isDummy: true
+            ) })
     }
 }
