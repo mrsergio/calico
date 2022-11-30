@@ -11,16 +11,18 @@ import Combine
 
 final class HomeViewModel: ObservableObject, DiffabledDataSnapshotGeneratable {
     
-    internal var cancellables = Set<AnyCancellable>()
     internal var fetcher = Fetcher.shared
     
     @Published var data: [DisplayItem] = []
     
     init() {
-        loadData()
+        initData()
     }
+}
+
+extension HomeViewModel {
     
-    func loadData() {
+    private func initData() {
         // Predefine display sections
         data = [
             DisplayItem(
@@ -49,7 +51,9 @@ final class HomeViewModel: ObservableObject, DiffabledDataSnapshotGeneratable {
                 items: CollectionItem.createDummies(count: 4, sectionType: .square)
             )
         ]
-        
+    }
+    
+    func loadData() {
         // Load predefined sections
         loadPredefinedSections()
         
