@@ -11,8 +11,8 @@ import Combine
 extension HomeViewModel {
     
     /// Load cats for an each predefined section
-    func loadPredefinedSections() {
-        Task {
+    @discardableResult func loadPredefinedSections() -> Task<(), Never> {
+        let predefinedSectionsLoadingTask = Task {
             // Go thru each predefined section
             for (index, displayItem) in data.enumerated() {
                 do {
@@ -39,10 +39,12 @@ extension HomeViewModel {
                 }
             }
         }
+        
+        return predefinedSectionsLoadingTask
     }
     
     /// Fetch tags, get a random couple of them and create a random tags section
-    func loadMoodSection() {
+    @discardableResult func loadMoodSection() -> Task<(), Never> {
         // Predefine mood section first
         let moodSection = CollectionSection(
             type: .wideWithOverlay,
@@ -70,7 +72,7 @@ extension HomeViewModel {
         }
         
         // Background loading process
-        Task {
+        let moodSectionLoadingTask = Task {
             do {
                 // Fetch a list of random tags
                 let randomTags: [String] = try await fetcher.fetchRandomTags()
@@ -101,5 +103,7 @@ extension HomeViewModel {
                 print("Error happened: \(error.localizedDescription)")
             }
         }
+        
+        return moodSectionLoadingTask
     }
 }
