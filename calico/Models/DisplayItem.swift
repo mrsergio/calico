@@ -26,6 +26,11 @@ struct DisplayItem {
     var sectionDescription: String {
         section.description
     }
+    
+    var isDummy: Bool {
+        // Display section considered as dummy is all the items are dummy
+        items.filter({ $0.isDummy }).count == items.count
+    }
 }
 
 extension DisplayItem {

@@ -38,6 +38,7 @@
 		499CBD3D291FEF980062C58B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD3C291FEF980062C58B /* HomeViewController.swift */; };
 		499CBD40291FEFF60062C58B /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD3F291FEFF60062C58B /* ImageCollectionViewCell.swift */; };
 		499CBD42291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */; };
+		49AE5C8A29376B250037FD94 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AE5C7B29363E590037FD94 /* HomeViewModelTests.swift */; };
 		49ECACEE292323CF00712195 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACED292323CF00712195 /* Database.swift */; };
 		49ECACF029232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACEF29232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift */; };
 		49ECACF229233BEE00712195 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF129233BEE00712195 /* UIViewController.swift */; };
@@ -45,6 +46,16 @@
 		49ECACF72923777D00712195 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACF62923777D00712195 /* NetworkMonitor.swift */; };
 		49ECACFB292381A100712195 /* NetworkReflectableUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49ECACFA292381A100712195 /* NetworkReflectableUIViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		49AE5C8529376B130037FD94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 499CBD09291F6B040062C58B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 499CBD10291F6B040062C58B;
+			remoteInfo = calico;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		49445E812934771B00BF4119 /* Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
@@ -79,6 +90,8 @@
 		499CBD3C291FEF980062C58B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		499CBD3F291FEFF60062C58B /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		499CBD41291FF01B0062C58B /* TitleCollectionHeaderSwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionHeaderSwiftUIView.swift; sourceTree = "<group>"; };
+		49AE5C7B29363E590037FD94 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		49AE5C8129376B130037FD94 /* calicotests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = calicotests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ECACED292323CF00712195 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		49ECACEF29232EBC00712195 /* DiffabledDataSnapshotGeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffabledDataSnapshotGeneratable.swift; sourceTree = "<group>"; };
 		49ECACF129233BEE00712195 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +107,13 @@
 			files = (
 				49445E872934C03100BF4119 /* NetworkClient in Frameworks */,
 				499B4E38292127DE001CCBA3 /* Kingfisher in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49AE5C7E29376B130037FD94 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				499CBD13291F6B040062C58B /* calico */,
+				49AE5C7A29363E340037FD94 /* Tests */,
 				499CBD12291F6B040062C58B /* Products */,
 				49445E852934C03100BF4119 /* Frameworks */,
 			);
@@ -162,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				499CBD11291F6B040062C58B /* calico.app */,
+				49AE5C8129376B130037FD94 /* calicotests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,6 +249,14 @@
 			path = Items;
 			sourceTree = "<group>";
 		};
+		49AE5C7A29363E340037FD94 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				49AE5C7B29363E590037FD94 /* HomeViewModelTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		49ECACEC2922ACDA00712195 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +310,24 @@
 			productReference = 499CBD11291F6B040062C58B /* calico.app */;
 			productType = "com.apple.product-type.application";
 		};
+		49AE5C8029376B130037FD94 /* calicotests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 49AE5C8929376B130037FD94 /* Build configuration list for PBXNativeTarget "calicotests" */;
+			buildPhases = (
+				49AE5C7D29376B130037FD94 /* Sources */,
+				49AE5C7E29376B130037FD94 /* Frameworks */,
+				49AE5C7F29376B130037FD94 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				49AE5C8629376B130037FD94 /* PBXTargetDependency */,
+			);
+			name = calicotests;
+			productName = calicotests;
+			productReference = 49AE5C8129376B130037FD94 /* calicotests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -292,6 +340,10 @@
 				TargetAttributes = {
 					499CBD10291F6B040062C58B = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					49AE5C8029376B130037FD94 = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 499CBD10291F6B040062C58B;
 					};
 				};
 			};
@@ -312,6 +364,7 @@
 			projectRoot = "";
 			targets = (
 				499CBD10291F6B040062C58B /* calico */,
+				49AE5C8029376B130037FD94 /* calicotests */,
 			);
 		};
 /* End PBXProject section */
@@ -323,6 +376,13 @@
 			files = (
 				499CBD21291F6B050062C58B /* LaunchScreen.storyboard in Resources */,
 				499CBD1E291F6B050062C58B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		49AE5C7F29376B130037FD94 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +429,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		49AE5C7D29376B130037FD94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49AE5C8A29376B250037FD94 /* HomeViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		49AE5C8629376B130037FD94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 499CBD10291F6B040062C58B /* calico */;
+			targetProxy = 49AE5C8529376B130037FD94 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		499CBD1F291F6B050062C58B /* LaunchScreen.storyboard */ = {
@@ -505,6 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6QNRPCJX8C;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = calico/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Calico;
@@ -535,6 +612,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6QNRPCJX8C;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = calico/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Calico;
@@ -557,6 +635,42 @@
 			};
 			name = Release;
 		};
+		49AE5C8729376B130037FD94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6QNRPCJX8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiisimakhin.calicotests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/calico.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/calico";
+			};
+			name = Debug;
+		};
+		49AE5C8829376B130037FD94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6QNRPCJX8C;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiisimakhin.calicotests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/calico.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/calico";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -574,6 +688,15 @@
 			buildConfigurations = (
 				499CBD26291F6B050062C58B /* Debug */,
 				499CBD27291F6B050062C58B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49AE5C8929376B130037FD94 /* Build configuration list for PBXNativeTarget "calicotests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49AE5C8729376B130037FD94 /* Debug */,
+				49AE5C8829376B130037FD94 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
